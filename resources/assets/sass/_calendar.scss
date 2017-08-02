@@ -1,0 +1,79 @@
+#full-calendar {
+	padding-top: 30px;
+}
+
+#calendar h2 {
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	line-height: 35px;
+}
+
+#calendar .fc-day-header {
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+#external-events {
+	padding-top: 50px;
+}
+
+#external-events .fc-event {
+	color: #fff;
+	text-decoration: none;
+	padding: 5px;
+	margin-bottom: 10px;
+	cursor: all-scroll;
+	border: none;
+}
+
+.fc thead, .fc-body{
+	border-top: 1px solid #ddd !important;
+}
+.fc-head thead{
+	border-bottom: 1px solid #ddd !important;
+}
+
+.fc button {
+	background: #fff;
+}
+
+.fc td {
+	border-width: 0 !important;
+}
+
+.fc th {
+	border-width: 0 !important;
+}
+
+.fc-state-active {
+	color: #009688 !important;
+}
+
+.fc-state-down {
+	color: #009688 !important;
+}
+.fc-scroller{
+	//overflow: visible !important;
+	//height: auto !important;
+}
+.fc h2 {
+	font-size: 1.5rem;
+	text-transform: uppercase;
+	line-height: 35px;
+}
+.fc-day-header{
+	text-transform: uppercase;
+}
+.fc-other-month{
+	color: #ddd;
+}
+.fc-event {
+	background: #3a87ad;
+	color: #fff;
+}
+.fc-button-group, .fc button {
+	display: block;
+}
+thead {
+	border-bottom: none !important;
+}
