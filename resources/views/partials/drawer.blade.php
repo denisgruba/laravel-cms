@@ -34,7 +34,7 @@
             @elseif($drawerPage == 'post-list')
                 <div class="row" style="margin-bottom: 0px;">
                     <div class="col s12">
-                        <span class="center-align">{!! (new App\Pagination($posts))->render() !!}</span>
+                        <span class="center-align">{{ $posts->links() }}</span>
                     </div>
                 </div>
                 <a href="{{ url('/post/create/') }}/{{$category->id}}/{{$site->id}}" class="waves-effect green right btn-large"><i class="material-icons right">add</i>Add new item</a>
@@ -45,7 +45,7 @@
             @elseif($drawerPage == 'post-type-list')
                 <div class="row" style="margin-bottom: 0px;">
                     <div class="col s12">
-                        <span class="center-align">{!! (new App\Pagination($posts))->render() !!}</span>
+                        <span class="center-align">{{ $posts->links() }}</span>
                     </div>
                 </div>
                 <a href="{{ url('/post/create/') }}/{{$category->id}}/{{$site->id}}/{{$type->id}}" class="waves-effect green right btn-large"><i class="material-icons right">add</i>Add new item</a>

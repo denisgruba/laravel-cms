@@ -35427,152 +35427,6 @@ if (false) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-moment/vue-moment.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var moment = __webpack_require__("./node_modules/moment/moment.js");
-
-module.exports = {
-	install: function (Vue, options) {
-		Object.defineProperties(Vue.prototype, {
-			$moment: {
-				get: function() {
-					return Vue.moment.bind(this);
-				},
-			},
-		});
-
-		if (options && options.moment) {
-			moment = options.moment
-		}
-
-		Vue.moment = function(data) {
-			return moment(data);
-		}
-
-		Vue.filter('moment', function() {
-			var args = Array.prototype.slice.call(arguments),
-				input = args.shift(),
-				date;
-
-			if (Array.isArray(input) && typeof input[0] === 'string') {
-				// If input is array, assume we're being passed a format pattern to parse against.
-				// Format pattern will accept an array of potential formats to parse against.
-				// Date string should be at [0], format pattern(s) should be at [1]
-				date = moment(string = input[0], formats = input[1], true);
-			} else {
-				// Otherwise, throw the input at moment and see what happens...
-				date = moment(input);
-			}
-
-			if (!date.isValid()) {
-				// Log a warning if moment couldn't reconcile the input. Better than throwing an error?
-				console.warn('Could not build a valid `moment` object from input.');
-				return input;
-			}
-
-			function parse() {
-				var args = Array.prototype.slice.call(arguments),
-					method = args.shift();
-
-				switch (method) {
-					case 'add':
-
-						// Mutates the original moment by adding time.
-						// http://momentjs.com/docs/#/manipulating/add/
-
-						var addends = args.shift()
-										  .split(',')
-										  .map(Function.prototype.call, String.prototype.trim);
-						obj = {};
-						for (var n = 0; n < addends.length; n++) {
-							var addend = addends[n].split(' ');
-							obj[addend[1]] = addend[0];
-						}
-						date = date.add(obj);
-						break;
-
-					case 'subtract':
-
-						// Mutates the original moment by subtracting time.
-						// http://momentjs.com/docs/#/manipulating/subtract/
-
-						var subtrahends = args.shift()
-										  .split(',')
-										  .map(Function.prototype.call, String.prototype.trim);
-						obj = {};
-						for (var n = 0; n < subtrahends.length; n++) {
-							var subtrahend = subtrahends[n].split(' ');
-							obj[subtrahend[1]] = subtrahend[0];
-						}
-						date = date.subtract(obj);
-						break;
-
-					case 'from':
-
-						// Display a moment in relative time, either from now or from a specified date.
-						// http://momentjs.com/docs/#/displaying/fromnow/
-
-						var from = 'now';
-						if (args[0] == 'now') args.shift();
-
-						if (moment(args[0]).isValid()) {
-							// If valid, assume it is a date we want the output computed against.
-							from = moment(args.shift());
-						}
-
-						var removeSuffix = false;
-						if (args[0] === true) {
-							args.shift();
-							var removeSuffix = true;
-						}
-
-						if (from != 'now') {
-							date = date.from(from, removeSuffix);
-							break;
-						}
-
-						date = date.fromNow(removeSuffix);
-						break;
-
-					case 'calendar':
-
-						// Formats a date with different strings depending on how close to a certain date (today by default) the date is.
-						// http://momentjs.com/docs/#/displaying/calendar-time/
-
-						var referenceTime = moment();
-
-						if (moment(args[0]).isValid()) {
-							// If valid, assume it is a date we want the output computed against.
-							referenceTime = moment(args.shift());
-						}
-
-						date = date.calendar(referenceTime);
-						break;
-
-					default:
-						// Format
-						// Formats a date by taking a string of tokens and replacing them with their corresponding values.
-						// http://momentjs.com/docs/#/displaying/format/
-
-						var format = method;
-						date = date.format(format);
-				}
-
-				if (args.length) parse.apply(parse, args);
-			}
-
-			parse.apply(parse, args);
-
-
-			return date;
-		});
-	},
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-resource/dist/vue-resource.es2015.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -47289,20 +47143,22 @@ module.exports = function(module) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CategoryLatestUpdates_vue__ = __webpack_require__("./resources/assets/js/components/CategoryLatestUpdates.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_CategoryLatestUpdates_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_CategoryLatestUpdates_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Categories_vue__ = __webpack_require__("./resources/assets/js/components/Categories.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Categories_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Categories_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ResourceBrowser_vue__ = __webpack_require__("./resources/assets/js/components/ResourceBrowser.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ResourceBrowser_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_ResourceBrowser_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Site_vue__ = __webpack_require__("./resources/assets/js/components/Site.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Site_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Site_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_NavQuickCreate_vue__ = __webpack_require__("./resources/assets/js/components/NavQuickCreate.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_NavQuickCreate_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_NavQuickCreate_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ActivityLog_vue__ = __webpack_require__("./resources/assets/js/components/ActivityLog.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_ActivityLog_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_ActivityLog_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Tutorial_vue__ = __webpack_require__("./resources/assets/js/components/Tutorial.vue");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Tutorial_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_Tutorial_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__("./node_modules/moment/moment.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_CategoryLatestUpdates_vue__ = __webpack_require__("./resources/assets/js/components/CategoryLatestUpdates.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_CategoryLatestUpdates_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_CategoryLatestUpdates_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Categories_vue__ = __webpack_require__("./resources/assets/js/components/Categories.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Categories_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Categories_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ResourceBrowser_vue__ = __webpack_require__("./resources/assets/js/components/ResourceBrowser.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_ResourceBrowser_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_ResourceBrowser_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Site_vue__ = __webpack_require__("./resources/assets/js/components/Site.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Site_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_Site_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_NavQuickCreate_vue__ = __webpack_require__("./resources/assets/js/components/NavQuickCreate.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_NavQuickCreate_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_NavQuickCreate_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ActivityLog_vue__ = __webpack_require__("./resources/assets/js/components/ActivityLog.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_ActivityLog_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_ActivityLog_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Tutorial_vue__ = __webpack_require__("./resources/assets/js/components/Tutorial.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Tutorial_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_Tutorial_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -47315,10 +47171,13 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 Vue.config.devtools = true;
 Vue.use(__webpack_require__("./node_modules/vue-resource/dist/vue-resource.es2015.js"));
-Vue.use(__webpack_require__("./node_modules/vue-moment/vue-moment.js"));
+// Vue.use(require('vue-moment'));
+
 
 // import VueMaterial from 'vue-material';
 // Vue.use(VueMaterial);
+
+Vue.use(__WEBPACK_IMPORTED_MODULE_0_moment___default.a);
 // import {tabs as mdcTabs} from 'material-components-web';
 
 
@@ -47341,18 +47200,22 @@ Vue.use(__webpack_require__("./node_modules/vue-moment/vue-moment.js"));
  */
 Vue.component('example', __webpack_require__("./resources/assets/js/components/Example.vue"));
 
-Vue.material.registerTheme('default', {
-    primary: {
-        color: 'grey',
-        hue: 800,
-        textColor: 'white' // text will be black
-    },
-    accent: 'white',
-    textColor: 'white',
-    warn: 'red'
+Vue.filter('fromNow', function (value) {
+    return __WEBPACK_IMPORTED_MODULE_0_moment___default()(value).fromNow();
 });
 
-Vue.material.setCurrentTheme('default');
+// Vue.material.registerTheme('default', {
+//     primary: {
+//         color: 'grey',
+//         hue: 800,
+//         textColor: 'white' // text will be black
+//     },
+//     accent: 'white',
+//     textColor: 'white',
+//     warn: 'red',
+// });
+//
+// Vue.material.setCurrentTheme('default');
 
 var app = new Vue({
 
@@ -47363,7 +47226,7 @@ var app = new Vue({
     },
 
     components: {
-        Categories: __WEBPACK_IMPORTED_MODULE_1__components_Categories_vue___default.a, CategoryLatestUpdates: __WEBPACK_IMPORTED_MODULE_0__components_CategoryLatestUpdates_vue___default.a, ResourceBrowser: __WEBPACK_IMPORTED_MODULE_2__components_ResourceBrowser_vue___default.a, Site: __WEBPACK_IMPORTED_MODULE_3__components_Site_vue___default.a, NavQuickCreate: __WEBPACK_IMPORTED_MODULE_4__components_NavQuickCreate_vue___default.a, ActivityLog: __WEBPACK_IMPORTED_MODULE_5__components_ActivityLog_vue___default.a, Tutorial: __WEBPACK_IMPORTED_MODULE_6__components_Tutorial_vue___default.a
+        Categories: __WEBPACK_IMPORTED_MODULE_2__components_Categories_vue___default.a, CategoryLatestUpdates: __WEBPACK_IMPORTED_MODULE_1__components_CategoryLatestUpdates_vue___default.a, ResourceBrowser: __WEBPACK_IMPORTED_MODULE_3__components_ResourceBrowser_vue___default.a, Site: __WEBPACK_IMPORTED_MODULE_4__components_Site_vue___default.a, NavQuickCreate: __WEBPACK_IMPORTED_MODULE_5__components_NavQuickCreate_vue___default.a, ActivityLog: __WEBPACK_IMPORTED_MODULE_6__components_ActivityLog_vue___default.a, Tutorial: __WEBPACK_IMPORTED_MODULE_7__components_Tutorial_vue___default.a
     },
 
     props: {

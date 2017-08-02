@@ -8,20 +8,14 @@
 
 @section('vue-template')
 
-    <style>
-    .md-theme-default.md-tabs>.md-tabs-navigation, .md-theme-default.md-tabs>.md-tabs-navigation .md-tab-header-navigation-button{
-        background-color: #{{$site->hex_color}};
-    }
-    </style>
 
     <script type="text/x-template" id="dashboard-categories">
         <main>
             <div class="row">
-                <nav class="nav-extended" style="background-color: #{{$site->hex_color}}; ">
+                <nav class="nav-extended" style="background-color: #{{$site->hex_color}};">
                     @include('partials.breadcrumbs.dashboard-site')
                     <div class="nav-content">
-
-                        {{--<ul id="tutorial-categories" class="tabs tabs-transparent" style="display: flex;">
+                        <ul id="tutorial-categories" class="tabs tabs-transparent" style="display: flex;">
                             <li
                                 v-for="category in categories"
                                 class="tab"
@@ -31,13 +25,15 @@
                                 </a>
                             </li>
                             <li class="tab"><a href="#tab0" @click="changeGroup(0)">Stats</a></li>
-                        </ul>--}}
+                        </ul>
                     </div>
                 </nav>
-                <md-tabs md-warn="white" @change="clickedTab">
-                    <md-tab v-for="category in categories" :ref="category.id" :key="category.id" :id="'tabid-'+category.id" :md-label="category.name" :md-options='{tabId: category.id}'>
+            </div>
+            @include('partials.preloader')
+            <div v-else>
+                <div class="row">
+                    <div v-for="category in categories">
                         <div v-if="category.id == 6">
-
                             <div id="a'tab'+category.id" class="col s12 m12 l12" v-if="selectedCategory == category.id">
                                 <div class="row">
                                     <div class="col s12 m6">
@@ -126,12 +122,12 @@
                                                             <input
                                                                 v-if="category.id==5"
                                                                 class="file-path validate" type="text" placeholder="Upload one max 10MB file. PDF files required." accept="pdf"
-                                                            >
+                    										>
                                                             <input
                                                                 v-else
                                                                 class="file-path validate" type="text"
                                                                 placeholder="Upload one or more files. Maximum 50 files & max 10MB each file."
-                                                            >
+                    										>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -154,7 +150,7 @@
                                                 >
                                                     <a :href="'/post/edit/'+categoryLatestUpdate.post_id+'/'+site.id">
                                                         <span class="badge">
-                                                            @{{categoryLatestUpdate.updated_at | moment ("from")}}
+                                                            @{{categoryLatestUpdate.updated_at | fromNow}}
                                                         </span>
                                                         @{{categoryLatestUpdate.title}}
                                                     </a>
@@ -169,13 +165,11 @@
                                 </div>
                             </div>
                         </div>
-                    </md-tab>
-
-
-                    <md-tab id="stats" md-label="Stats">
+                    </div>
+                    <div id="tab0" class="col s12 m12 l12" v-if="selectedCategory == 0">
                         <div class="row">
                             <div class="col s12 m6 l6">
-                                <div class="card-panel" >
+                                <div class="card-panel">
                                     <h5>Stats</h5>
                                     <table class="striped">
                                         <tbody>
@@ -205,18 +199,11 @@
                                 </ul>
                             </div>
                         </div>
-                    </md-tab>
-                </md-tabs>
-            </div>
+                        <div class="row">
+                            <div class="col s12 m12 l12">
 
-            @include('partials.preloader')
-            <div v-else>
-                <div class="row">
-                    <div v-for="category in categories">
-
-                    </div>
-                    <div id="tab0" class="col s12 m12 l12" v-if="selectedCategory == 0">
-
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -230,10 +217,10 @@
 
 @section('scripts')
 
-    {{-- <script>
+    <script>
     $(document).ready(function(){
         $('ul.tabs').tabs({'swipeable': false});
     });
-    </script> --}}
+    </script>
 
 @endsection

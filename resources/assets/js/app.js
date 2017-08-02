@@ -10,11 +10,13 @@ require('./bootstrap');
 window.Vue = require('vue');
 Vue.config.devtools=true;
 Vue.use(require('vue-resource'));
-Vue.use(require('vue-moment'));
+// Vue.use(require('vue-moment'));
 
 
 // import VueMaterial from 'vue-material';
 // Vue.use(VueMaterial);
+import moment from "moment";
+Vue.use( moment);
 // import {tabs as mdcTabs} from 'material-components-web';
 
 import CategoryLatestUpdates from './components/CategoryLatestUpdates.vue';
@@ -37,18 +39,22 @@ import Tutorial from './components/Tutorial.vue';
  */
 Vue.component('example', require('./components/Example.vue'));
 
-Vue.material.registerTheme('default', {
-    primary: {
-        color: 'grey',
-        hue: 800,
-        textColor: 'white' // text will be black
-    },
-    accent: 'white',
-    textColor: 'white',
-    warn: 'red',
+Vue.filter('fromNow', function (value) {
+    return moment(value).fromNow();
 });
 
-Vue.material.setCurrentTheme('default');
+// Vue.material.registerTheme('default', {
+//     primary: {
+//         color: 'grey',
+//         hue: 800,
+//         textColor: 'white' // text will be black
+//     },
+//     accent: 'white',
+//     textColor: 'white',
+//     warn: 'red',
+// });
+//
+// Vue.material.setCurrentTheme('default');
 
 const app = new Vue({
 
