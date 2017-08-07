@@ -110,6 +110,7 @@ class StaffResourceController extends Controller
 			$staff->title = $oldstaff->title;
 			$staff->name = $oldstaff->name;
 			$staff->position = $oldstaff->position;
+			$staff->bio = $oldstaff->bio;
 
 			$staff->save();
 
@@ -153,6 +154,7 @@ class StaffResourceController extends Controller
 			$staff->title = $request::get('title');
 			$staff->name = $request::get('name');
 			$staff->position = $request::get('position');
+			$staff->bio = $request::get('bio');
 
 			if($request::get('email')=="" || $request::get('email')==null){
 				$staff->email = null;
@@ -220,6 +222,7 @@ class StaffResourceController extends Controller
 			} else{
 				$staff->email = $request::get('email');
 			}
+			$staff->bio = $request::get('bio');
 
 			$destinationPath = './uploads/staff/';
 

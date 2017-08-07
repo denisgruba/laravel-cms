@@ -39,6 +39,12 @@
                             <label for="email">E-Mail</label>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="input-field col s12" {{--id="wysiwyg-editor"--}}>
+                            <label for="title"><h6>Bio</h6></label>
+                            <textarea id="material-editor" name="bio" rows="2" class="material-editor materialize-textarea form-control" placeholder="Add content">{{ old('bio') }}</textarea>
+                        </div>
+                    </div>
     				<div id="tutorial-staff-create-group" class="row">
     					<div class="input-field col s12">
                             <select name="group" id="group" required >

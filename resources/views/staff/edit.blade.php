@@ -66,6 +66,12 @@
                             <input id="email" name="email" type="email" class="validate"  value="{{$staff->email}}">
                             <label for="email">E-Mail</label>
                         </div>
+                        <div class="row">
+							<div class="col s12" {{--id="wysiwyg-editor"--}}>
+                                <label for="title"><h6>Content</h6></label>
+                                <textarea id="material-editor" name="bio" rows="2" class="material-editor form-control" placeholder="Add content">{!!$staff->bio!!}</textarea>
+                            </div>
+                        </div>
                         <div class="input-field">
 							<select name="group" id="group" required >
                                 @foreach($groups as $group)
