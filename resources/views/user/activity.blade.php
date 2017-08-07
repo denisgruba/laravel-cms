@@ -13,11 +13,16 @@
             </div>
         </div>
     </main>
+
+@endsection
+
+@section('vue-template')
+
     <script type="text/x-template" id="activity-log">
         @include('partials.preloader')
         <div class="row" v-else>
             <div class="col m12">
-                <table class="highlight bordered white z-depth-1">
+                <table  v-if="!fetchingData && !fetchingFailed" class="highlight bordered white z-depth-1">
                     <thead>
                         <tr>
                             <th data-field="User">User Name</th>
@@ -28,7 +33,7 @@
                     </thead>
                     <tr v-for="activity in activities">
                         <td>
-                            <a href="{{url('/')}}">@{{activity.user.name}}</a>
+                            <a href="{{url('/')}}">@{{activity.name}}</a>
                         </td>
                         <td>
                             @{{activity.text}}
@@ -44,4 +49,5 @@
             </div>
         </div>
     </script>
+
 @endsection

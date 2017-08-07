@@ -110,9 +110,16 @@ class ApiController extends Controller
 	{
         if(true){
             if(is_null($user_id)){
-    			$latestActivities = ActivityGet::with('user')->latest()->get();
+    			$latestActivities = ActivityGet::leftJoin('users', 'activity_log.user_id', '=', 'users.id')
+                                    ->latest()
+                                    ->select('activity_log.id as log_id', 'user_id', 'text', 'ip_address', 'activity_log.created_at', 'name')
+                                    ->get();
     		}
-    		else $latestActivities = ActivityGet::with('user')->where('user_id', $user_id)->latest()->get();
+    		else $latestActivities = ActivityGet::leftJoin('users', 'activity_log.user_id', '=', 'users.id')
+                                    ->where('user_id', $user_id)
+                                    ->latest()
+                                    ->select('id as log_id', 'user_id', 'text', 'ip_address', 'created_at')
+                                    ->get();
             return $latestActivities;
         } return null;
 	}
