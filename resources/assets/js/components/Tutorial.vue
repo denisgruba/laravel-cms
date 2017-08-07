@@ -15,11 +15,11 @@
             'openTutorial'
         ],
         created(){
-            if(this.tutorialPage == 'CreateNews') this.$dispatch('startOpenOverlayCreateNews');
-            if(this.tutorialPage == 'CreateEvent') this.$dispatch('startOpenOverlayCreateEvent');
-            if(this.tutorialPage == 'CreateDocument') this.$dispatch('startOpenOverlayCreateDocument');
-            if(this.tutorialPage == 'CreateStaff') this.$dispatch('startOpenOverlayCreateStaff');
-            if(this.tutorialPage == 'SortStaff') {this.$dispatch('startOpenOverlaySortStaff')} else { $('#tutorial-staff-sort-drag').remove() } ;
+            if(this.tutorialPage == 'CreateNews') this.$emit('startOpenOverlayCreateNews');
+            if(this.tutorialPage == 'CreateEvent') this.$emit('startOpenOverlayCreateEvent');
+            if(this.tutorialPage == 'CreateDocument') this.$emit('startOpenOverlayCreateDocument');
+            if(this.tutorialPage == 'CreateStaff') this.$emit('startOpenOverlayCreateStaff');
+            if(this.tutorialPage == 'SortStaff') {this.$emit('startOpenOverlaySortStaff')} else { $('#tutorial-staff-sort-drag').remove() } ;
             // this.openTutorial = $vm.root.openTutorial;
         },
         methods:{

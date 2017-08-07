@@ -361,3 +361,12 @@ input.autocomplete + label + ul.autocomplete-content:hover{
 .tabs-content.carousel.initialized{
     height: 2000px!important;
 }
+.collection{
+    overflow: visible;
+}
+.collapsed h4 {
+    margin: 0.2rem 0 0.2rem 0;
+}
+.collapsed .collection-staff{
+    display: none;
+}

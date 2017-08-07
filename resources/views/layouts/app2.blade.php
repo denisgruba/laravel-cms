@@ -22,9 +22,10 @@
 </div>
 
 
-@include('partials.nav-template')
 
+@include('partials.nav-template')
 @yield('vue-template')
+@yield('drawer-check')
 
 @include('partials.scripts')
 @yield('scripts')

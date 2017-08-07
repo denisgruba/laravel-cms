@@ -690,6 +690,11 @@ const app = new Vue({
     },
 
     created: function(){
+        this.$on('startOpenOverlayCreateNews', this.startOpenOverlayCreateNews);
+        this.$on('startOpenOverlayCreateEvent', this.startOpenOverlayCreateEvent);
+        this.$on('startOpenOverlayCreateDocument', this.startOpenOverlayCreateDocument);
+        this.$on('startOpenOverlayCreateStaff', this.startOpenOverlayCreateStaff);
+        this.$on('startOpenOverlaySortStaff', this.startOpenOverlaySortStaff);
         window.addEventListener('scroll', this.handleScroll);
         window.addEventListener('resize', this.handleResize);
         $('#jswarning').remove();

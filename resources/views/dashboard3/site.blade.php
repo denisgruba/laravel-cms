@@ -20,11 +20,11 @@
                                 v-for="category in categories"
                                 class="tab"
                             >
-                                <a @click="changeGroup(category.id)" :href="'#tab'+category.id">
+                                <a @click="changeGroup(category.id)" :href="'#tab'+category.id" :class="'tab-link-tab'+category.id">
                                     @{{category.name}}
                                 </a>
                             </li>
-                            <li class="tab"><a href="#tab0" @click="changeGroup(0)">Stats</a></li>
+                            <li class="tab"><a href="#tab0" class="tab-link-tab0" @click="changeGroup(0)">Stats</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -34,7 +34,7 @@
                 <div class="row">
                     <div v-for="category in categories">
                         <div v-if="category.id == 6">
-                            <div id="a'tab'+category.id" class="col s12 m12 l12" v-if="selectedCategory == category.id">
+                            <div :id="'tab'+category.id" class="col s12 m12 l12" v-if="selectedCategory == category.id">
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div id="tutorial-staff-actions" class="card-panel" style="overflow: hidden;">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div v-else>
-                            <div id="a'tab'+category.id" class="col s12 m12 l12" v-if="selectedCategory == category.id">
+                            <div :id="'tab'+category.id" class="col s12 m12 l12" v-if="selectedCategory == category.id">
                                 <div class="row">
                                     <div class="col s12 m6">
                                         <div id="tutorial-actions" class="card-panel" style="overflow: hidden;">
@@ -219,7 +219,7 @@
 
     <script>
     $(document).ready(function(){
-        $('ul.tabs').tabs({'swipeable': false});
+        // $('ul.tabs').tabs({'swipeable': false});
     });
     </script>
 

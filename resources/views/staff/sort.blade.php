@@ -3,17 +3,6 @@
 @section('content')
     <main>
         @include('partials.breadcrumbs.staff-sort')
-        <style>
-        .collection{
-            overflow: visible;
-        }
-        .collapsed h4 {
-            margin: 0.2rem 0 0.2rem 0;
-        }
-        .collapsed .collection-staff{
-            display: none;
-        }
-        </style>
         <div class="card-panel">
             <p>Drag and drop to sort Groups and Staff.</p>
         </div>
@@ -30,7 +19,7 @@
                     <ul id="sortable0">
                         {{-- @{{openTutorial}} --}}
 
-                        <tutorial :tutorial-page.sync="'SortStaff'"></tutorial>
+                        <tutorial :tutorial-page="'SortStaff'"></tutorial>
 
                         @foreach($groups as $group)
                             <li id="group_{{$group->id}}" class="ui-state-default ui-group">
@@ -130,6 +119,10 @@
             </div>
         </div>
     </main>
+
+@endsection
+
+@section('vue-template')
 
     <script type="text/x-template" id="tutorial-component">
         @if($enableSortTutorial)

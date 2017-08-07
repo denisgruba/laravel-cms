@@ -86,9 +86,16 @@
             @endif
         </div>
     </main>
-    <tutorial :tutorial-page.sync="'CreateStaff'"></tutorial>
+    <tutorial :tutorial-page="'CreateStaff'"></tutorial>
 
-    <script type="text/x-template" id="tutorial-component"></script>
+
+@endsection
+
+@section('vue-template')
+
+<script type="text/x-template" id="tutorial-component">
+    <div></div>
+</script>
 
 @endsection
 

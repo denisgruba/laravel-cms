@@ -1,4 +1,4 @@
-{{-- <div style="display: none;" id="tutorial-wrapper" class="tutorial-wrapper">
+<div style="display: none;" id="tutorial-wrapper" class="tutorial-wrapper">
     <canvas id="tutorial-canvas"></canvas>
     <div id="tutorial-overlay">
         <div id="tutorial-info-card" class="card" >
@@ -14,4 +14,4 @@
         </div>
         <div id="tutorial-highlight-box" @click="settings.highlightButtonAction()"></div>
     </div>
-</div> --}}
+</div>

@@ -73,6 +73,10 @@
     </div>
 @endforeach
 
+@section('drawer-check')
+
 <script>
     var drawerEnabled = true;
 </script>
+
+@endsection

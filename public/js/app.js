@@ -1768,15 +1768,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         selectedCategory: function selectedCategory() {
             if (this.firstLoadCategory) {
+                // $('ul.tabs').tabs({'swipeable': false});
                 if (window.location.hash.substr(4) !== '') {
-                    this.changeGroup(window.location.hash.substr(4));
-                    $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
+                    // this.changeGroup(window.location.hash.substr(4));
+                    // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
+                    // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
                 } else {
                     this.changeGroup(1);
-                    $('.tab').find('a[href="#tab1"]').trigger('click');
+                    // $('.tab').find('a[href="#tab1"]').trigger('click');
+                    // $('ul.tabs').tabs('select_tab', 'tab1');
                 };
-                $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
+                // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
+                // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
                 this.changeGroup(window.location.hash.substr(4));
+                // $('ul.tabs').children().removeAttr('style');
+                $('ul.tabs').tabs();
+                $('.tab-link-tab1').trigger('click');
+                // console.log($('.tab').find('a[href="#' + 'tab1' + '"]'));
                 this.firstLoadCategory = false;
             };
             if (this.userTutorialStatus !== 'false') {
@@ -2050,12 +2058,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['tutorialPage', 'siteId', 'category', 'openTutorial'],
     created: function created() {
-        if (this.tutorialPage == 'CreateNews') this.$dispatch('startOpenOverlayCreateNews');
-        if (this.tutorialPage == 'CreateEvent') this.$dispatch('startOpenOverlayCreateEvent');
-        if (this.tutorialPage == 'CreateDocument') this.$dispatch('startOpenOverlayCreateDocument');
-        if (this.tutorialPage == 'CreateStaff') this.$dispatch('startOpenOverlayCreateStaff');
+        if (this.tutorialPage == 'CreateNews') this.$emit('startOpenOverlayCreateNews');
+        if (this.tutorialPage == 'CreateEvent') this.$emit('startOpenOverlayCreateEvent');
+        if (this.tutorialPage == 'CreateDocument') this.$emit('startOpenOverlayCreateDocument');
+        if (this.tutorialPage == 'CreateStaff') this.$emit('startOpenOverlayCreateStaff');
         if (this.tutorialPage == 'SortStaff') {
-            this.$dispatch('startOpenOverlaySortStaff');
+            this.$emit('startOpenOverlaySortStaff');
         } else {
             $('#tutorial-staff-sort-drag').remove();
         };
@@ -48111,6 +48119,11 @@ var app = new Vue({
     },
 
     created: function created() {
+        this.$on('startOpenOverlayCreateNews', this.startOpenOverlayCreateNews);
+        this.$on('startOpenOverlayCreateEvent', this.startOpenOverlayCreateEvent);
+        this.$on('startOpenOverlayCreateDocument', this.startOpenOverlayCreateDocument);
+        this.$on('startOpenOverlayCreateStaff', this.startOpenOverlayCreateStaff);
+        this.$on('startOpenOverlaySortStaff', this.startOpenOverlaySortStaff);
         window.addEventListener('scroll', this.handleScroll);
         window.addEventListener('resize', this.handleResize);
         $('#jswarning').remove();
