@@ -81,6 +81,14 @@ class SiteResourceController extends Controller
 			$site->url = $request::get('url');
 			$site->logo = $request::get('logo');
 			$site->trust = $request::get('trust');
+			$site->dfe = $request::get('dfe');
+			$site->ofsted_grade = $request::get('ofsted_grade');
+			$site->joined = $request::get('joined');
+			$site->principal = $request::get('principal');
+			$site->email = $request::get('email');
+			$site->telephone = $request::get('telephone');
+			$site->postal = $request::get('postal');
+			$site->map = $request::get('map');
 
 			$site->save();
 
@@ -115,6 +123,14 @@ class SiteResourceController extends Controller
 			$site->url = $request::get('url');
 			$site->logo = $request::get('logo');
 			$site->trust = $request::get('trust');
+			$site->dfe = $request::get('dfe');
+			$site->ofsted_grade = $request::get('ofsted_grade');
+			$site->joined = $request::get('joined');
+			$site->principal = $request::get('principal');
+			$site->email = $request::get('email');
+			$site->telephone = $request::get('telephone');
+			$site->postal = $request::get('postal');
+			$site->map = $request::get('map');
 
 			$site->save();
 

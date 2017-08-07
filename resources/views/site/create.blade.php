@@ -43,6 +43,40 @@
                             <label for="trust">Trust</label>
                         </div>
                         <div class="input-field col s12">
+                            <input id="dfe" name="dfe" type="text" class="validate" value="{{ old('dfe') }}">
+                            <label for="dfe">DfE</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="ofsted_grade" name="ofsted_grade" type="text" class="validate" value="{{ old('ofsted_grade') }}">
+                            <label for="ofsted_grade">Ofsted Grade</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <div class=""><label for=""><h6>Joined Date</h6></label></div>
+                            <div id="joined_date" class="input-field">
+                                <input id="datepicker1" name="joined" type="text" class="" placeholder="Date" value="{{ old('joined') }}">
+                            </div>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="principal" name="principal" type="text" class="validate" value="{{ old('principal') }}">
+                            <label for="principal">Principal</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="email" name="email" type="text" class="validate" value="{{ old('email') }}">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="telephone" name="telephone" type="text" class="validate" value="{{ old('telephone') }}">
+                            <label for="telephone">Telephone</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="postal" name="postal" type="text" class="validate" value="{{ old('postal') }}">
+                            <label for="postal">Postal</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="map" name="map" type="text" class="validate" value="{{ old('map') }}">
+                            <label for="map">Map</label>
+                        </div>
+                        <div class="input-field col s12">
                             <label for="">Available Categories</label>
                             <br />
                             @foreach($categories as $category)
@@ -63,4 +97,19 @@
         </div>
     </div>
 </main>
+@endsection
+
+@section('scripts')
+
+<script>
+    $(document).ready(function(){
+        $('#datepicker1').pickadate({
+            formatSubmit: 'yyyy/mm/dd',
+            hiddenName: true,
+            selectMonths: true,
+            selectYears: 5
+        });
+    });
+</script>
+
 @endsection
