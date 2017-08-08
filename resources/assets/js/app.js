@@ -690,6 +690,7 @@ const app = new Vue({
     },
 
     created: function(){
+        this.fetchUserTutorialStatus();
         this.$on('startOpenOverlayCreateNews', this.startOpenOverlayCreateNews);
         this.$on('startOpenOverlayCreateEvent', this.startOpenOverlayCreateEvent);
         this.$on('startOpenOverlayCreateDocument', this.startOpenOverlayCreateDocument);

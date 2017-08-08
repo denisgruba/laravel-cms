@@ -59,6 +59,33 @@
                 <ul id="shortcuts-dropdown-{{$drawerType}}" class="dropdown-content">
                     @include('partials.drawer-shortcuts-post-list')
                 </ul>
+            @elseif($drawerPage == 'vacancy-role')
+                <a href="{{ url('/vacancy/create/') }}/{{$site->id}}" class="waves-effect green right btn-large"><i class="material-icons right">add</i>Add new item</a>
+                <a href="#" data-activates="shortcuts-dropdown-{{$drawerType}}" data-constrainWidth="false"  class="waves-effect dropdown-button btn-flat"><i class="material-icons right">list</i>Shortcuts</a>
+                <ul id="shortcuts-dropdown-{{$drawerType}}" class="dropdown-content">
+                    @include('partials.drawer-shortcuts-vacancy-list')
+                </ul>
+            @elseif($drawerPage == 'vacancy')
+                <a href="#publish_settings" class="waves-effect btn-flat"><i class="material-icons right">settings</i>Publish Settings</a>
+                <a href="#" data-activates="shortcuts-dropdown-{{$drawerType}}" data-constrainWidth="false" class="waves-effect dropdown-button btn-flat"><i class="material-icons right">list</i>Shortcuts</a>
+                <a href="{{url('/')}}/vacancy/create/{{$site->id}}" class="waves-effect btn-flat"><i class="material-icons right">add</i>Add another item</a>
+                @if($view_name == 'vacancy-edit')
+                    <a href="#confirm-delete" class="waves-effect btn-flat"><i class="material-icons right">delete</i>Delete this Item</a>
+                @endif
+                <ul id="shortcuts-dropdown-{{$drawerType}}" class="dropdown-content">
+                    @include('partials.drawer-shortcuts-vacancy')
+                </ul>
+            @elseif($drawerPage == 'vacancy-list')
+                <div class="row" style="margin-bottom: 0px;">
+                    <div class="col s12">
+                        <span class="center-align">{{ $posts->links() }}</span>
+                    </div>
+                </div>
+                <a href="{{ url('/vacancy/create/') }}/{{$site->id}}" class="waves-effect green right btn-large"><i class="material-icons right">add</i>Add new item</a>
+                <a href="#" data-activates="shortcuts-dropdown-{{$drawerType}}" data-constrainWidth="false"  class="waves-effect  dropdown-button btn-flat"><i class="material-icons right">list</i>Shortcuts</a>
+                <ul id="shortcuts-dropdown-{{$drawerType}}" class="dropdown-content">
+                    @include('partials.drawer-shortcuts-vacancy-list')
+                </ul>
             @elseif($drawerPage == 'user-edit')
                 <a href="{{ url('/user/password/reset') }}" class="waves-effect btn-flat"><i class="material-icons right">lock</i>Change Password</a>
             @elseif($drawerPage == 'converter')

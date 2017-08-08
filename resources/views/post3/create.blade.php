@@ -325,14 +325,18 @@
         </div>
     </main>
     @if ($category->id==2)
-        <tutorial :tutorial-page.sync="'CreateEvent'"></tutorial>
+        <tutorial-component :tutorial-page="'CreateEvent'"></tutorial-component>
     @elseif ($category->id==5)
-        <tutorial :tutorial-page.sync="'CreateDocument'"></tutorial>
+        <tutorial-component :tutorial-page="'CreateDocument'"></tutorial-component>
     @else
-        <tutorial :tutorial-page.sync="'CreateNews'"></tutorial>
+        <tutorial-component :tutorial-page="'CreateNews'"></tutorial-component>
     @endif
 
-    <script type="text/x-template" id="tutorial-component"></script>
+@endsection
+
+@section('vue-template')
+
+<script type="text/x-template" id="tutorial-component"></script>
 
 @endsection
 

@@ -1789,13 +1789,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
             if (this.userTutorialStatus !== 'false') {
 
-                // if(this.selectedCategory==2){
-                //     this.$dispatch('startOpenOverlayEvents');
-                // } else if(this.selectedCategory==6){
-                //     this.$dispatch('startOpenOverlayStaff');
-                // } else{
-                //     this.$dispatch('startOpenOverlayCategories');
-                // }
+                if (this.selectedCategory == 2) {
+                    this.$dispatch('startOpenOverlayEvents');
+                } else if (this.selectedCategory == 6) {
+                    this.$dispatch('startOpenOverlayStaff');
+                } else {
+                    this.$dispatch('startOpenOverlayCategories');
+                }
             }
         },
         categoryTypes: function categoryTypes() {
@@ -2058,6 +2058,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['tutorialPage', 'siteId', 'category', 'openTutorial'],
     created: function created() {
+        console.log(this.tutorialPage);
         if (this.tutorialPage == 'CreateNews') this.$emit('startOpenOverlayCreateNews');
         if (this.tutorialPage == 'CreateEvent') this.$emit('startOpenOverlayCreateEvent');
         if (this.tutorialPage == 'CreateDocument') this.$emit('startOpenOverlayCreateDocument');
@@ -48119,6 +48120,7 @@ var app = new Vue({
     },
 
     created: function created() {
+        this.fetchUserTutorialStatus();
         this.$on('startOpenOverlayCreateNews', this.startOpenOverlayCreateNews);
         this.$on('startOpenOverlayCreateEvent', this.startOpenOverlayCreateEvent);
         this.$on('startOpenOverlayCreateDocument', this.startOpenOverlayCreateDocument);

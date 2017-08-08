@@ -15,6 +15,7 @@
             'openTutorial'
         ],
         created(){
+            console.log(this.tutorialPage);
             if(this.tutorialPage == 'CreateNews') this.$emit('startOpenOverlayCreateNews');
             if(this.tutorialPage == 'CreateEvent') this.$emit('startOpenOverlayCreateEvent');
             if(this.tutorialPage == 'CreateDocument') this.$emit('startOpenOverlayCreateDocument');

@@ -48,6 +48,24 @@ Route::group(['namespace'=>'Post'], function(){
     Route::post('post/storetype/{category_id}', 'PostTypeController@store');
 });
 
+Route::group(['namespace'=>'Vacancy'], function(){
+    Route::get('vacancy/list/{site_id}', 'VacancyListController@list');
+    Route::get('vacancy/delete/{site_id}/{post_id}','VacancyListController@delete');
+    // Route::get('post/pin/{post_id}', 'PostListController@pin');
+    // Route::get('post/unpin/{post_id}', 'PostListController@unpin');
+    // Route::get('post/pin-trust/{post_id}', 'PostListController@pinTrust');
+    // Route::get('post/unpin-trust/{post_id}', 'PostListController@unpinTrust');
+
+    Route::get('vacancy/create/{site_id}/{type_id?}', 'VacancyResourceController@create');
+    Route::get('vacancy/edit/{post_id}/{site_id}', 'VacancyResourceController@edit');
+    Route::post('vacancy/store/{category_id?}/{site_id?}', 'VacancyResourceController@store');
+    Route::post('vacancy/update/{post_id}/{site_id}', 'VacancyResourceController@update');
+
+    Route::get('vacancy/role/{site_id}','VacancyRoleController@role');
+    Route::get('vacancy/role_list/{role_id}/{site_id}','VacancyRoleController@rolelist');
+    // Route::post('post/storetype/{category_id}', 'PostTypeController@store');
+});
+
 Route::group(['namespace'=>'Blocks'], function(){
     Route::get('blocks/create/{site_id}', 'BlocksResourceController@create');
 });

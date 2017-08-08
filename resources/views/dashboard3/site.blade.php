@@ -60,6 +60,33 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-else-if="category.id == 9">
+                            <div :id="'tab'+category.id" class="col s12 m12 l12" v-if="selectedCategory == category.id">
+                                <div class="row">
+                                    <div class="col s12 m6">
+                                        <div id="tutorial-staff-actions" class="card-panel" style="overflow: hidden;">
+                                            <h5 style="margin-top: 0;">Actions</h5>
+                                            <a :href="'/vacancy/list/'+site.id" class="btn fullwidth teal darken-1 hoverable waves-effect"><i class="material-icons right">reorder</i>List Vacancies</a>
+                                            <a :href="'/vacancy/create/'+site.id" class="btn-large fullwidth teal accent-4 hoverable waves-effect"><i class="material-icons right">add</i>Add Vacancy </a>
+                                            <a :href="'/vacancy/group/'+site.id" class="btn fullwidth teal darken-1 hoverable waves-effect"><i class="material-icons right">playlist_add</i>Manage Vacancy Roles</a>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col s12 m6">
+                                        <ul id="tutorial-staff-groups" class="collection with-header z-depth-1">
+                                            <li class="collection-header"><h4>Staff in groups</h4></li>
+                                            <li class="collection-item"
+                                                v-for="group in groups"
+                                            >
+                                                <span class="badge" data-badge-caption="staff members">
+                                                    @{{group.staff.length}}
+                                                </span>
+                                                @{{group.name}}
+                                            </li>
+                                        </ul>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
                         <div v-else>
                             <div :id="'tab'+category.id" class="col s12 m12 l12" v-if="selectedCategory == category.id">
                                 <div class="row">

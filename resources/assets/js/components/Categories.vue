@@ -129,13 +129,13 @@ export default {
             };
             if(this.userTutorialStatus!=='false'){
 
-                // if(this.selectedCategory==2){
-                //     this.$dispatch('startOpenOverlayEvents');
-                // } else if(this.selectedCategory==6){
-                //     this.$dispatch('startOpenOverlayStaff');
-                // } else{
-                //     this.$dispatch('startOpenOverlayCategories');
-                // }
+                if(this.selectedCategory==2){
+                    this.$dispatch('startOpenOverlayEvents');
+                } else if(this.selectedCategory==6){
+                    this.$dispatch('startOpenOverlayStaff');
+                } else{
+                    this.$dispatch('startOpenOverlayCategories');
+                }
             }
         },
         categoryTypes: function(){
