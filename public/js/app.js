@@ -48033,11 +48033,7 @@ Vue.filter('fromNow', function (value) {
 
 var store = new Vuex.Store({
     state: {},
-    mutations: {
-        toggleThumbs: function toggleThumbs(state) {
-            state.hideThumbs = !state.hideThumbs;
-        }
-    },
+    mutations: {},
     actions: {}
 });
 window.store = store;

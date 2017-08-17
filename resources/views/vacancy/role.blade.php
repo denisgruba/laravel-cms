@@ -22,8 +22,8 @@
                                     @can('webteam')
                                         <td>{{$role->type_id}}</td>
                                     @endcan
-                                    <td><a href="{{ url('/vacancy/role_list/').$role->type_id}}/{{$site->id}}">{{$role->name}}</a></td>
-                                    <td><a href="{{ url('/vacancy/role_list/').$role->type_id}}/{{$site->id}}" class="waves-effect waves-light btn right"><i class="material-icons left">list</i>List items</a></td>
+                                    <td><a href="{{ url('/vacancy/role_list/')}}/{{$role->type_id}}/{{$site->id}}">{{$role->name}}</a></td>
+                                    <td><a href="{{ url('/vacancy/role_list/')}}/{{$role->type_id}}/{{$site->id}}" class="waves-effect waves-light btn right"><i class="material-icons left">list</i>List items</a></td>
                                 </tr>
                             @endforeach
                         </table>

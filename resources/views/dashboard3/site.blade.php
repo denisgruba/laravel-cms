@@ -68,7 +68,7 @@
                                             <h5 style="margin-top: 0;">Actions</h5>
                                             <a :href="'/vacancy/list/'+site.id" class="btn fullwidth teal darken-1 hoverable waves-effect"><i class="material-icons right">reorder</i>List Vacancies</a>
                                             <a :href="'/vacancy/create/'+site.id" class="btn-large fullwidth teal accent-4 hoverable waves-effect"><i class="material-icons right">add</i>Add Vacancy </a>
-                                            <a :href="'/vacancy/group/'+site.id" class="btn fullwidth teal darken-1 hoverable waves-effect"><i class="material-icons right">playlist_add</i>Manage Vacancy Roles</a>
+                                            <a :href="'/vacancy/role/'+site.id" class="btn fullwidth teal darken-1 hoverable waves-effect"><i class="material-icons right">playlist_add</i>Manage Vacancy Roles</a>
                                         </div>
                                     </div>
                                     <div class="col s12 m6">

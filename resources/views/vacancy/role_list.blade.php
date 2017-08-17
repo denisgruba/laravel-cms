@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        @include('partials.breadcrumbs.vacancy-list')
+        @include('partials.breadcrumbs.vacancy-role-list')
         <div class="row">
             <div class="col m12">
                 <table class="highlight white z-depth-1">

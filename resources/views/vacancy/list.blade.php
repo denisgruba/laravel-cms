@@ -33,7 +33,7 @@
                                 {{$post->name}}
                             </td>
                             <td>
-                                <a href="{{url('/')}}/vacancy/type_list/{{$post->type_id}}/{{$site->id}}">{{$post->label}}</a>
+                                <a href="{{url('/')}}/vacancy/role_list/{{$post->type_id}}/{{$site->id}}">{{$post->label}}</a>
                             </td>
                             <td>
                                 {{-- <a href="{{url('/')}}/post/type_list/{{$post->site_id}}/{{$site->id}}"> --}}

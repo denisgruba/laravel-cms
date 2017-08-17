@@ -80,7 +80,10 @@ class VacancyRoleController extends Controller
 				->orderBy('start', 'desc')
 				->paginate(15);
 
-			return view('vacancy.list', compact('posts', 'category', 'site'));
+            $role = Type::where('id', $role_id)
+                ->first();
+
+			return view('vacancy.role_list', compact('posts', 'role', 'site'));
 
 		} else return redirect('denied');
 	}

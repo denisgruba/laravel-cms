@@ -63,9 +63,7 @@ const store = new Vuex.Store({
 
     },
     mutations: {
-        toggleThumbs (state) {
-            state.hideThumbs = !state.hideThumbs;
-        },
+        
     },
     actions: {
 
