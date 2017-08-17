@@ -23,7 +23,7 @@ class MediaController extends Controller
 		$this->middleware('auth');
 	}
 
-    public function list($site_id=null)
+    public function listMedia($site_id=null)
     {
         if (is_null($site_id)) {
 			$site_id = session()->get('site_id');

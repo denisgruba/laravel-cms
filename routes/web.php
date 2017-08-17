@@ -99,7 +99,7 @@ Route::group(['namespace'=>'User'], function(){
 });
 
 Route::group(['namespace'=>'Media'], function(){
-    Route::get('media/list/{site_id}', 'MediaController@list');
+    Route::get('media/list/{site_id}', 'MediaController@listMedia');
     Route::post('media/update/{site_id}', 'MediaController@update');
 });
 
