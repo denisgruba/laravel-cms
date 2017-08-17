@@ -8,8 +8,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.Vuex = require('vuex');
 Vue.config.devtools=true;
 Vue.use(require('vue-resource'));
+Vue.use(Vuex);
 // Vue.use(require('vue-moment'));
 
 
@@ -55,6 +57,22 @@ Vue.filter('fromNow', function (value) {
 // });
 //
 // Vue.material.setCurrentTheme('default');
+
+const store = new Vuex.Store({
+    state: {
+
+    },
+    mutations: {
+        toggleThumbs (state) {
+            state.hideThumbs = !state.hideThumbs;
+        },
+    },
+    actions: {
+        
+    }
+});
+window.store = store;
+
 
 const app = new Vue({
 

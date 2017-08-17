@@ -49,7 +49,7 @@ Route::group(['namespace'=>'Post'], function(){
 });
 
 Route::group(['namespace'=>'Vacancy'], function(){
-    Route::get('vacancy/list/{site_id}', 'VacancyListController@list');
+    Route::get('vacancy/list/{site_id}', 'VacancyListController@listRoles');
     Route::get('vacancy/delete/{site_id}/{post_id}','VacancyListController@delete');
     // Route::get('post/pin/{post_id}', 'PostListController@pin');
     // Route::get('post/unpin/{post_id}', 'PostListController@unpin');

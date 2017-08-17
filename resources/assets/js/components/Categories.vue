@@ -28,17 +28,6 @@ export default {
         this.fetchSite();
     },
     methods:{
-        clickedTab: function(id) {
-
-            console.log(id);
-        },
-        tabChange: function(id) {
-            // this.selectedCategory = activeTab;
-            console.log(id);
-        },
-        clickTab(category){
-            console.log(category);
-        },
         fetchSite: function(siteId){
             this.$http.get('/api/getSite/'+ this.siteId).then(function(site){
                 this.site = site.body;

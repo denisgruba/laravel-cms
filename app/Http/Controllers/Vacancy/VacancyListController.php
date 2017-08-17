@@ -34,7 +34,7 @@ class VacancyListController extends Controller
 	{
 		$this->middleware('auth');
 	}
-    public function list($site_id)
+    public function listRoles($site_id)
 	{
         $category_id = 9;
 		if($this->checkSitePermission($site_id) && $this->checkCategorySitePermission($site_id, $category_id)){
