@@ -1719,7 +1719,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         fetchCategoryLatestUpdates: function fetchCategoryLatestUpdates() {
-            if (this.selectedCategory == 2) this.url = '/api/getCategoryLatestUpdates/' + this.siteId + '/' + this.selectedCategory + '/9999';else this.url = '/api/getCategoryLatestUpdates/' + this.siteId + '/' + this.selectedCategory;
+            if (this.selectedCategory == 2) this.url = '/api/getCategoryLatestUpdates/' + this.siteId + '/' + this.selectedCategory + '/9999';else if (this.selectedCategory == 9) this.url = '/api/getVacancies/' + this.siteId;else this.url = '/api/getCategoryLatestUpdates/' + this.siteId + '/' + this.selectedCategory;
 
             this.$http.get(this.url).then(function (categoryLatestUpdates) {
                 this.categoryLatestUpdates = categoryLatestUpdates.body;
@@ -48936,7 +48936,7 @@ var app = new Vue({
     },
 
     created: function created() {
-        this.fetchUserTutorialStatus();
+        // this.fetchUserTutorialStatus();
         this.$on('startOpenOverlayCreateNews', this.startOpenOverlayCreateNews);
         this.$on('startOpenOverlayCreateEvent', this.startOpenOverlayCreateEvent);
         this.$on('startOpenOverlayCreateDocument', this.startOpenOverlayCreateDocument);

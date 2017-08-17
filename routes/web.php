@@ -126,6 +126,7 @@ Route::group(['middleware' => 'api', 'namespace'=> 'Api'], function(){
     Route::get('api/getSite/{site_id}', 'ApiController@getSite');
     Route::get('api/getSiteCategories/{site_id}', 'ApiController@getSiteCategories');
     Route::get('api/getCategoryLatestUpdates/{site_id}/{category_id}/{howmany?}', 'ApiController@getCategoryLatestUpdates');
+    Route::get('api/getVacancies/{site_id}', 'ApiController@getVacancies');
     Route::get('api/getCategoryTypes/{site_id}/{category_id}', 'ApiController@getCategoryTypes');
     Route::get('api/getGroupsWithStaff/{site_id}', 'ApiController@getGroupsWithStaff');
     Route::get('api/getMediaFiles/{site_id}', 'ApiController@getMediaFiles');

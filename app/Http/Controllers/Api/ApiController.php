@@ -16,6 +16,7 @@ use ActivityGet;
 use App\Category;
 use App\Resource;
 use App\Siteuser;
+use Carbon\Carbon;
 use App\Category_site;
 use App\Http\Requests;
 use App\Resourcedefault;
@@ -30,7 +31,11 @@ class ApiController extends Controller
     use ImageTraits;
     use PermissionsTraits;
 
-
+    public function getCarbon()
+    {
+        $now = Carbon::now();
+        return $now;
+    }
     public function getUserSites()
     {
         $sites = Site::join('site_user', 'sites.id', '=', 'site_user.site_id')
@@ -65,6 +70,22 @@ class ApiController extends Controller
                 ->where('category_id', $category_id)
                 ->orderBy('contents.updated_at', 'desc')
                 ->take($howmany)
+                ->get();
+            return $posts;
+        } return null;
+    }
+    public function getVacancies($site_id)
+    {
+        if($this->checkSitePermission($site_id) && $this->checkCategorySitePermission($site_id, 9)){
+            $posts = Post::select('posts.id', 'site_id', 'title', 'contents.updated_at', 'start', 'end', 'content_id')
+                ->join('contents', 'posts.content_id', '=', 'contents.id')
+                ->where('start', '<', $this->getCarbon())
+                ->where('category_id', 9)
+                ->where(function ($q) {
+                    $q->whereNull('end')
+                        ->orWhere('end', '>', $this->getCarbon());
+                })
+                ->orderBy('contents.updated_at', 'desc')
                 ->get();
             return $posts;
         } return null;

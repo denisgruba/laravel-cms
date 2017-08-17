@@ -50,7 +50,7 @@
                     <div class="row">
                         <div class=" col s10 offset-s1">
                             <i class="material-icons prefix"></i>
-                            <input input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />
+                            <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} />
                             <label for="remember">Remember Me</label>
                         </div>
                     </div>

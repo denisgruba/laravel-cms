@@ -71,19 +71,21 @@
                                             <a :href="'/vacancy/group/'+site.id" class="btn fullwidth teal darken-1 hoverable waves-effect"><i class="material-icons right">playlist_add</i>Manage Vacancy Roles</a>
                                         </div>
                                     </div>
-                                    <!-- <div class="col s12 m6">
+                                    <div class="col s12 m6">
                                         <ul id="tutorial-staff-groups" class="collection with-header z-depth-1">
-                                            <li class="collection-header"><h4>Staff in groups</h4></li>
+                                            <li class="collection-header"><h4>Vacancies Live</h4></li>
                                             <li class="collection-item"
-                                                v-for="group in groups"
+                                                v-for="categoryLatestUpdate in categoryLatestUpdates"
                                             >
-                                                <span class="badge" data-badge-caption="staff members">
-                                                    @{{group.staff.length}}
-                                                </span>
-                                                @{{group.name}}
+                                                <a :href="'/vacancy/edit/'+categoryLatestUpdate.id+'/'+site.id">
+                                                    <span class="badge">
+                                                        @{{categoryLatestUpdate.updated_at | fromNow}}
+                                                    </span>
+                                                    @{{categoryLatestUpdate.title}}
+                                                </a>
                                             </li>
                                         </ul>
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>

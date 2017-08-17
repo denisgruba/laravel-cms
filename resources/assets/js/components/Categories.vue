@@ -57,6 +57,7 @@ export default {
         },
         fetchCategoryLatestUpdates: function(){
             if(this.selectedCategory==2) this.url='/api/getCategoryLatestUpdates/'+this.siteId+'/'+this.selectedCategory+'/9999';
+            else if(this.selectedCategory==9) this.url='/api/getVacancies/'+this.siteId;
             else this.url='/api/getCategoryLatestUpdates/'+this.siteId+'/'+this.selectedCategory;
 
             this.$http.get(this.url).then(function(categoryLatestUpdates){
