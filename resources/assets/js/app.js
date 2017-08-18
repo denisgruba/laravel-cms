@@ -60,19 +60,83 @@ Vue.filter('fromNow', function (value) {
 
 const store = new Vuex.Store({
     state: {
-
+        tutorialID: 0,
+        queuedFunction: null
     },
     mutations: {
-        
+        updateTutorialID (state, n) {
+            state.tutorialID = n;
+        },
+        queuedFunction (state, f) {
+            state.queuedFunction = f;
+        }
     },
     actions: {
+        startOpenOverlayCategories ({commit}) {
+            store.commit('updateTutorialID', 1);
+            vm.fetchUserTutorialStatus(function(){
+                vm.openOverlayWelcome();
+            });
+         },
+        startOpenOverlayEvents ({commit}) {
+            store.commit('updateTutorialID', 2);
+            vm.fetchUserTutorialStatus(function(){
+                vm.openOverlayEvents();
+            });
+        },
+        startOpenOverlayStaff ({commit}) {
+            store.commit('updateTutorialID', 3);
+            vm.fetchUserTutorialStatus(function(){
+                vm.openOverlayStaffActions();
+            });
+        },
+        startOpenOverlayCreateNews ({commit}) {
+            store.commit('updateTutorialID', 4);
+            store.commit('queuedFunction', function(){
+                vm.fetchUserTutorialStatus(function(){
+                    vm.openOverlayCreateNewsTitle();
+                });
+            });
 
+        },
+        startOpenOverlayCreateEvent ({commit}) {
+            store.commit('updateTutorialID', 5);
+            store.commit('queuedFunction', function(){
+                vm.fetchUserTutorialStatus(function(){
+                    vm.openOverlayCreateEventTitle();
+                });
+            });
+        },
+        startOpenOverlayCreateDocument ({commit}) {
+            store.commit('updateTutorialID', 6);
+            store.commit('queuedFunction', function(){
+                vm.fetchUserTutorialStatus(function(){
+                    vm.openOverlayCreateDocumentTitle();
+                });
+            });
+        },
+        startOpenOverlayCreateStaff ({commit}) {
+            store.commit('updateTutorialID', 7);
+            store.commit('queuedFunction', function(){
+                vm.fetchUserTutorialStatus(function(){
+                    vm.openOverlayCreateStaffName();
+                });
+            });
+        },
+        startOpenOverlaySortStaff ({commit}) {
+            store.commit('updateTutorialID', 8);
+            store.commit('queuedFunction', function(){
+                vm.fetchUserTutorialStatus(function(){
+                    vm.openOverlaySortStaffIntro();
+                });
+            });
+        },
     }
 });
 window.store = store;
 
 
-const app = new Vue({
+const vm = new Vue({
 
     el: '#app',
 
@@ -83,7 +147,6 @@ const app = new Vue({
     components: {
         Categories, CategoryLatestUpdates, ResourceBrowser, Site, NavQuickCreate, ActivityLog, Tutorial
     },
-
 
     props: {
         currentElement: {
@@ -97,64 +160,20 @@ const app = new Vue({
         },
         settings: {},
         // openOverlayHelp: null,
-        tutorialID: 0,
+        // tutorialID: 0,
         userTutorialStatus: false,
         openTutorial: false,
         startTutorial: {
             default: '',
         },
     },
-
-    events: {
-        startOpenOverlayCategories: function(){
-            this.tutorialID=1;
-            this.fetchUserTutorialStatus(function(){
-                vm.openOverlayWelcome();
-            });
-         },
-        startOpenOverlayEvents: function(){
-            this.tutorialID=2;
-            this.fetchUserTutorialStatus(function(){
-                vm.openOverlayEvents();
-            });
+    computed: {
+        tutorialID () {
+            return store.state.tutorialID;
         },
-        startOpenOverlayStaff: function(){
-            this.tutorialID=3;
-            this.fetchUserTutorialStatus(function(){
-                vm.openOverlayStaffActions();
-            });
-        },
-        startOpenOverlayCreateNews: function(){
-            this.tutorialID=4;
-            this.fetchUserTutorialStatus(function(){
-                vm.openOverlayCreateNewsTitle();
-            });
-        },
-        startOpenOverlayCreateEvent: function(){
-            this.tutorialID=5;
-            this.fetchUserTutorialStatus(function(){
-                vm.openOverlayCreateEventTitle();
-            });
-        },
-        startOpenOverlayCreateDocument: function(){
-            this.tutorialID=6;
-            this.fetchUserTutorialStatus(function(){
-                vm.openOverlayCreateDocumentTitle();
-            });
-        },
-        startOpenOverlayCreateStaff: function(){
-            this.tutorialID=7;
-            this.fetchUserTutorialStatus(function(){
-                vm.openOverlayCreateStaffName();
-            });
-        },
-        startOpenOverlaySortStaff: function(){
-            this.tutorialID=8;
-            this.fetchUserTutorialStatus(function(){
-                vm.openOverlaySortStaffIntro();
-            });
-        },
-
+            queuedFunction () {
+            return store.state.queuedFunction;
+        }
     },
 
     methods: {
@@ -191,7 +210,7 @@ const app = new Vue({
                 } else {
                     this.userTutorialStatus='false';
                 }
-                if(this.openTutorial) callback();
+                if(this.openTutorial && callback) callback();
             }, function(){
                 this.userTutorialStatus = 'false';
                 this.openTutorial = false;
@@ -690,28 +709,16 @@ const app = new Vue({
         },
 
     },
-
     watch: {
-
-    },
-
-    init: function(){
-
-        // $('template').replaceWith(function(){
-		// 	return $("<script />").append($(this).contents()).attr("type", "x/templates").attr("id", 'dashboard-site');
-		// });
-		// $('main').replaceWith(function(){
-		// 	return $("<div />").append($(this).contents()).addClass("main");
-		// });
+        queuedFunction (callback) {
+            if(callback){
+                callback();
+            }
+        }
     },
 
     created: function(){
-        // this.fetchUserTutorialStatus();
-        this.$on('startOpenOverlayCreateNews', this.startOpenOverlayCreateNews);
-        this.$on('startOpenOverlayCreateEvent', this.startOpenOverlayCreateEvent);
-        this.$on('startOpenOverlayCreateDocument', this.startOpenOverlayCreateDocument);
-        this.$on('startOpenOverlayCreateStaff', this.startOpenOverlayCreateStaff);
-        this.$on('startOpenOverlaySortStaff', this.startOpenOverlaySortStaff);
+        this.fetchUserTutorialStatus();
         window.addEventListener('scroll', this.handleScroll);
         window.addEventListener('resize', this.handleResize);
         $('#jswarning').remove();
@@ -719,3 +726,4 @@ const app = new Vue({
 
 
 });
+window.vm = vm;

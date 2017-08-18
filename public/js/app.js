@@ -1705,15 +1705,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.categories = categories.body;
                 this.fetchingData = false;
                 if (window.location.hash.substr(4) !== '') {
-                    // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').delay(1000).trigger('click');
-                    // console.log('a[href="#' + window.location.hash.substr(1) + '"]');
-                    // $('ul.tabs').tabs();
-                    // $('ul.tabs').delay(2000).tabs('select_tab', "'"+window.location.hash.substr(1)+"'");
+
                     this.selectedCategory = window.location.hash.substr(4);
                 } else {
                     this.selectedCategory = 1;
                 };
-                // $('ul.tabs').tabs();
+                if (this.firstLoadCategory) {
+                    // $('ul.tabs').tabs({'swipeable': false});
+                    if (window.location.hash.substr(4) !== '') {
+                        $(document).ready(function () {
+                            $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
+                            $('ul.tabs').find('a[href="#' + window.location.hash.substr(4) + '"]').trigger('click');
+                            $('ul.tabs').find('active').removeClass('active');
+                            $('ul.tabs').find('a[href="#' + window.location.hash.substr(4) + '"]').addClass('active');
+                        });
+                        // this.changeGroup(window.location.hash.substr(4));
+                        // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
+                        // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
+                    } else {
+                        $(document).ready(function () {
+                            $('ul.tabs').tabs('select_tab', 'tab1');
+                            console.log($('.tab').find('a[href="#tab1"]'));
+                            $('ul.tabs').find('a[href="#tab1"]').trigger('click');
+                            $('ul.tabs').find('active').removeClass('active');
+                            $('ul.tabs').find('a[href="#tab1"]').addClass('active');
+                        });
+                        // $('.tab').find('a[href="#tab1"]').trigger('click');
+                        // $('ul.tabs').tabs('select_tab', 'tab1');
+                    };
+                };
             }, function () {
                 this.fetchingFailed = true;
             });
@@ -1741,10 +1761,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.fetchingFailed = true;
             });
         },
-        changeGroup: function changeGroup(category) {
+        changeGroup: function changeGroup(newcategory) {
             $('.editorAir').materialnote('destroy');
-            this.selectedCategory = category;
-            if (category == 0) {} else if (category !== 6) {
+            this.selectedCategory = newcategory;
+            if (newcategory == 0) {} else if (newcategory !== 6) {
                 this.fetchCategoryLatestUpdates();
                 this.fetchCategoryTypes();
             } else {
@@ -1758,31 +1778,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.firstLoadCategory) {
                 // $('ul.tabs').tabs({'swipeable': false});
                 if (window.location.hash.substr(4) !== '') {
+                    $(document).ready(function () {
+                        $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
+                        $('ul.tabs').find('a[href="#' + window.location.hash.substr(4) + '"]').trigger('click');
+                        $('ul.tabs').find('active').removeClass('active');
+                        $('ul.tabs').find('a[href="#' + window.location.hash.substr(4) + '"]').addClass('active');
+                    });
                     // this.changeGroup(window.location.hash.substr(4));
                     // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
                     // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
                 } else {
-                    this.changeGroup(1);
+                    $(document).ready(function () {
+                        $('ul.tabs').tabs('select_tab', 'tab1');
+                        console.log($('.tab').find('a[href="#tab1"]'));
+                        $('ul.tabs').find('a[href="#tab1"]').trigger('click');
+                        $('ul.tabs').find('active').removeClass('active');
+                        $('ul.tabs').find('a[href="#tab1"]').addClass('active');
+                    });
                     // $('.tab').find('a[href="#tab1"]').trigger('click');
                     // $('ul.tabs').tabs('select_tab', 'tab1');
                 };
                 // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
                 // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
-                this.changeGroup(window.location.hash.substr(4));
+                // this.changeGroup(window.location.hash.substr(4));
                 // $('ul.tabs').children().removeAttr('style');
-                $('ul.tabs').tabs();
-                $('.tab-link-tab1').trigger('click');
+                // $(document).ready(function(){
+                //     $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
+                //     $('.tab').find('a[href="#'+window.location.hash.substr(4)+'"]').trigger('click');
+                //     $('.tab').find('active').removeClass('active');
+                //     $('.tab').find('a[href="#'+window.location.hash.substr(4)+'"]').addClass('active');
+                //
+                // });
+
+                // $('.tab-link-tab1').trigger('click');
                 // console.log($('.tab').find('a[href="#' + 'tab1' + '"]'));
                 this.firstLoadCategory = false;
             };
             if (this.userTutorialStatus !== 'false') {
 
                 if (this.selectedCategory == 2) {
-                    this.$dispatch('startOpenOverlayEvents');
+                    store.dispatch('startOpenOverlayEvents');
                 } else if (this.selectedCategory == 6) {
-                    this.$dispatch('startOpenOverlayStaff');
+                    store.dispatch('startOpenOverlayStaff');
                 } else {
-                    this.$dispatch('startOpenOverlayCategories');
+                    store.dispatch('startOpenOverlayCategories');
                 }
             }
         },
@@ -2033,10 +2072,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    template: '#tutorial-component',
-    name: 'tutorial-component',
     data: function data() {
         return {
             // categories: [],
@@ -2046,13 +2086,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     props: ['tutorialPage', 'siteId', 'category', 'openTutorial'],
     created: function created() {
-        console.log(this.tutorialPage);
-        if (this.tutorialPage == 'CreateNews') this.$emit('startOpenOverlayCreateNews');
-        if (this.tutorialPage == 'CreateEvent') this.$emit('startOpenOverlayCreateEvent');
-        if (this.tutorialPage == 'CreateDocument') this.$emit('startOpenOverlayCreateDocument');
-        if (this.tutorialPage == 'CreateStaff') this.$emit('startOpenOverlayCreateStaff');
+        if (this.tutorialPage == 'CreateNews') store.dispatch('startOpenOverlayCreateNews');
+        if (this.tutorialPage == 'CreateEvent') store.dispatch('startOpenOverlayCreateEvent');
+        if (this.tutorialPage == 'CreateDocument') store.dispatch('startOpenOverlayCreateDocument');
+        if (this.tutorialPage == 'CreateStaff') store.dispatch('startOpenOverlayCreateStaff');
         if (this.tutorialPage == 'SortStaff') {
-            this.$emit('startOpenOverlaySortStaff');
+            store.dispatch('startOpenOverlaySortStaff');
         } else {
             $('#tutorial-staff-sort-drag').remove();
         };
@@ -35394,6 +35433,22 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2b7716b9\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Tutorial.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div')
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-2b7716b9", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-421d3a42\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Example.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -48032,13 +48087,98 @@ Vue.filter('fromNow', function (value) {
 // Vue.material.setCurrentTheme('default');
 
 var store = new Vuex.Store({
-    state: {},
-    mutations: {},
-    actions: {}
+    state: {
+        tutorialID: 0,
+        queuedFunction: null
+    },
+    mutations: {
+        updateTutorialID: function updateTutorialID(state, n) {
+            state.tutorialID = n;
+        },
+        queuedFunction: function queuedFunction(state, f) {
+            state.queuedFunction = f;
+        }
+    },
+    actions: {
+        startOpenOverlayCategories: function startOpenOverlayCategories(_ref) {
+            var commit = _ref.commit;
+
+            store.commit('updateTutorialID', 1);
+            vm.fetchUserTutorialStatus(function () {
+                vm.openOverlayWelcome();
+            });
+        },
+        startOpenOverlayEvents: function startOpenOverlayEvents(_ref2) {
+            var commit = _ref2.commit;
+
+            store.commit('updateTutorialID', 2);
+            vm.fetchUserTutorialStatus(function () {
+                vm.openOverlayEvents();
+            });
+        },
+        startOpenOverlayStaff: function startOpenOverlayStaff(_ref3) {
+            var commit = _ref3.commit;
+
+            store.commit('updateTutorialID', 3);
+            vm.fetchUserTutorialStatus(function () {
+                vm.openOverlayStaffActions();
+            });
+        },
+        startOpenOverlayCreateNews: function startOpenOverlayCreateNews(_ref4) {
+            var commit = _ref4.commit;
+
+            store.commit('updateTutorialID', 4);
+            store.commit('queuedFunction', function () {
+                vm.fetchUserTutorialStatus(function () {
+                    vm.openOverlayCreateNewsTitle();
+                });
+            });
+        },
+        startOpenOverlayCreateEvent: function startOpenOverlayCreateEvent(_ref5) {
+            var commit = _ref5.commit;
+
+            store.commit('updateTutorialID', 5);
+            store.commit('queuedFunction', function () {
+                vm.fetchUserTutorialStatus(function () {
+                    vm.openOverlayCreateEventTitle();
+                });
+            });
+        },
+        startOpenOverlayCreateDocument: function startOpenOverlayCreateDocument(_ref6) {
+            var commit = _ref6.commit;
+
+            store.commit('updateTutorialID', 6);
+            store.commit('queuedFunction', function () {
+                vm.fetchUserTutorialStatus(function () {
+                    vm.openOverlayCreateDocumentTitle();
+                });
+            });
+        },
+        startOpenOverlayCreateStaff: function startOpenOverlayCreateStaff(_ref7) {
+            var commit = _ref7.commit;
+
+            store.commit('updateTutorialID', 7);
+            store.commit('queuedFunction', function () {
+                vm.fetchUserTutorialStatus(function () {
+                    vm.openOverlayCreateStaffName();
+                });
+            });
+        },
+        startOpenOverlaySortStaff: function startOpenOverlaySortStaff(_ref8) {
+            var commit = _ref8.commit;
+
+            store.commit('updateTutorialID', 8);
+            store.commit('queuedFunction', function () {
+                vm.fetchUserTutorialStatus(function () {
+                    vm.openOverlaySortStaffIntro();
+                });
+            });
+        }
+    }
 });
 window.store = store;
 
-var app = new Vue({
+var vm = new Vue({
 
     el: '#app',
 
@@ -48062,64 +48202,20 @@ var app = new Vue({
         },
         settings: {},
         // openOverlayHelp: null,
-        tutorialID: 0,
+        // tutorialID: 0,
         userTutorialStatus: false,
         openTutorial: false,
         startTutorial: {
             default: ''
         }
     },
-
-    events: {
-        startOpenOverlayCategories: function startOpenOverlayCategories() {
-            this.tutorialID = 1;
-            this.fetchUserTutorialStatus(function () {
-                vm.openOverlayWelcome();
-            });
+    computed: {
+        tutorialID: function tutorialID() {
+            return store.state.tutorialID;
         },
-        startOpenOverlayEvents: function startOpenOverlayEvents() {
-            this.tutorialID = 2;
-            this.fetchUserTutorialStatus(function () {
-                vm.openOverlayEvents();
-            });
-        },
-        startOpenOverlayStaff: function startOpenOverlayStaff() {
-            this.tutorialID = 3;
-            this.fetchUserTutorialStatus(function () {
-                vm.openOverlayStaffActions();
-            });
-        },
-        startOpenOverlayCreateNews: function startOpenOverlayCreateNews() {
-            this.tutorialID = 4;
-            this.fetchUserTutorialStatus(function () {
-                vm.openOverlayCreateNewsTitle();
-            });
-        },
-        startOpenOverlayCreateEvent: function startOpenOverlayCreateEvent() {
-            this.tutorialID = 5;
-            this.fetchUserTutorialStatus(function () {
-                vm.openOverlayCreateEventTitle();
-            });
-        },
-        startOpenOverlayCreateDocument: function startOpenOverlayCreateDocument() {
-            this.tutorialID = 6;
-            this.fetchUserTutorialStatus(function () {
-                vm.openOverlayCreateDocumentTitle();
-            });
-        },
-        startOpenOverlayCreateStaff: function startOpenOverlayCreateStaff() {
-            this.tutorialID = 7;
-            this.fetchUserTutorialStatus(function () {
-                vm.openOverlayCreateStaffName();
-            });
-        },
-        startOpenOverlaySortStaff: function startOpenOverlaySortStaff() {
-            this.tutorialID = 8;
-            this.fetchUserTutorialStatus(function () {
-                vm.openOverlaySortStaffIntro();
-            });
+        queuedFunction: function queuedFunction() {
+            return store.state.queuedFunction;
         }
-
     },
 
     methods: {
@@ -48157,7 +48253,7 @@ var app = new Vue({
                 } else {
                     this.userTutorialStatus = 'false';
                 }
-                if (this.openTutorial) callback();
+                if (this.openTutorial && callback) callback();
             }, function () {
                 this.userTutorialStatus = 'false';
                 this.openTutorial = false;
@@ -48918,32 +49014,23 @@ var app = new Vue({
         }
 
     },
-
-    watch: {},
-
-    init: function init() {
-
-        // $('template').replaceWith(function(){
-        // 	return $("<script />").append($(this).contents()).attr("type", "x/templates").attr("id", 'dashboard-site');
-        // });
-        // $('main').replaceWith(function(){
-        // 	return $("<div />").append($(this).contents()).addClass("main");
-        // });
+    watch: {
+        queuedFunction: function queuedFunction(callback) {
+            if (callback) {
+                callback();
+            }
+        }
     },
 
     created: function created() {
-        // this.fetchUserTutorialStatus();
-        this.$on('startOpenOverlayCreateNews', this.startOpenOverlayCreateNews);
-        this.$on('startOpenOverlayCreateEvent', this.startOpenOverlayCreateEvent);
-        this.$on('startOpenOverlayCreateDocument', this.startOpenOverlayCreateDocument);
-        this.$on('startOpenOverlayCreateStaff', this.startOpenOverlayCreateStaff);
-        this.$on('startOpenOverlaySortStaff', this.startOpenOverlaySortStaff);
+        this.fetchUserTutorialStatus();
         window.addEventListener('scroll', this.handleScroll);
         window.addEventListener('resize', this.handleResize);
         $('#jswarning').remove();
     }
 
 });
+window.vm = vm;
 
 /***/ }),
 
@@ -49295,7 +49382,7 @@ var Component = __webpack_require__("./node_modules/vue-loader/lib/component-nor
   /* script */
   __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Tutorial.vue"),
   /* template */
-  null,
+  __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2b7716b9\",\"hasScoped\":false}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Tutorial.vue"),
   /* styles */
   null,
   /* scopeId */
@@ -49305,6 +49392,7 @@ var Component = __webpack_require__("./node_modules/vue-loader/lib/component-nor
 )
 Component.options.__file = "/Users/DenisGruba/Sites/cms-7/resources/assets/js/components/Tutorial.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Tutorial.vue: functional components are not supported with templates, they should use render functions.")}
 
 /* hot reload */
 if (false) {(function () {

@@ -42,15 +42,36 @@ export default {
                 this.categories = categories.body;
                 this.fetchingData = false;
                 if(window.location.hash.substr(4)!==''){
-                    // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').delay(1000).trigger('click');
-                    // console.log('a[href="#' + window.location.hash.substr(1) + '"]');
-                    // $('ul.tabs').tabs();
-                    // $('ul.tabs').delay(2000).tabs('select_tab', "'"+window.location.hash.substr(1)+"'");
+
                     this.selectedCategory = window.location.hash.substr(4);
                 } else {
                     this.selectedCategory = 1;
                 };
-                // $('ul.tabs').tabs();
+                if(this.firstLoadCategory){
+                    // $('ul.tabs').tabs({'swipeable': false});
+                    if(window.location.hash.substr(4)!==''){
+                        $(document).ready(function(){
+                            $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
+                            $('ul.tabs').find('a[href="#'+window.location.hash.substr(4)+'"]').trigger('click');
+                            $('ul.tabs').find('active').removeClass('active');
+                            $('ul.tabs').find('a[href="#'+window.location.hash.substr(4)+'"]').addClass('active');
+
+                        });
+                        // this.changeGroup(window.location.hash.substr(4));
+                        // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
+                        // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
+                    } else {
+                        $(document).ready(function(){
+                            $('ul.tabs').tabs('select_tab', 'tab1');
+                            console.log($('.tab').find('a[href="#tab1"]'));
+                            $('ul.tabs').find('a[href="#tab1"]').trigger('click');
+                            $('ul.tabs').find('active').removeClass('active');
+                            $('ul.tabs').find('a[href="#tab1"]').addClass('active');
+                        });
+                        // $('.tab').find('a[href="#tab1"]').trigger('click');
+                        // $('ul.tabs').tabs('select_tab', 'tab1');
+                    };
+                };
             }, function(){
                 this.fetchingFailed = true;
             });
@@ -82,11 +103,11 @@ export default {
                 this.fetchingFailed = true;
             });
         },
-        changeGroup: function(category){
+        changeGroup: function(newcategory){
             $('.editorAir').materialnote('destroy');
-            this.selectedCategory = category;
-            if (category==0){}
-            else if(category !== 6){
+            this.selectedCategory = newcategory;
+            if (newcategory==0){}
+            else if(newcategory !== 6){
                 this.fetchCategoryLatestUpdates();
                 this.fetchCategoryTypes();
             } else {
@@ -100,31 +121,51 @@ export default {
             if(this.firstLoadCategory){
                 // $('ul.tabs').tabs({'swipeable': false});
                 if(window.location.hash.substr(4)!==''){
+                    $(document).ready(function(){
+                        $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
+                        $('ul.tabs').find('a[href="#'+window.location.hash.substr(4)+'"]').trigger('click');
+                        $('ul.tabs').find('active').removeClass('active');
+                        $('ul.tabs').find('a[href="#'+window.location.hash.substr(4)+'"]').addClass('active');
+
+                    });
                     // this.changeGroup(window.location.hash.substr(4));
                     // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
                     // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
                 } else {
-                    this.changeGroup(1);
+                    $(document).ready(function(){
+                        $('ul.tabs').tabs('select_tab', 'tab1');
+                        console.log($('.tab').find('a[href="#tab1"]'));
+                        $('ul.tabs').find('a[href="#tab1"]').trigger('click');
+                        $('ul.tabs').find('active').removeClass('active');
+                        $('ul.tabs').find('a[href="#tab1"]').addClass('active');
+                    });
                     // $('.tab').find('a[href="#tab1"]').trigger('click');
                     // $('ul.tabs').tabs('select_tab', 'tab1');
                 };
                 // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
                 // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
-                this.changeGroup(window.location.hash.substr(4));
+                // this.changeGroup(window.location.hash.substr(4));
                 // $('ul.tabs').children().removeAttr('style');
-                $('ul.tabs').tabs();
-                $('.tab-link-tab1').trigger('click');
+                // $(document).ready(function(){
+                //     $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
+                //     $('.tab').find('a[href="#'+window.location.hash.substr(4)+'"]').trigger('click');
+                //     $('.tab').find('active').removeClass('active');
+                //     $('.tab').find('a[href="#'+window.location.hash.substr(4)+'"]').addClass('active');
+                //
+                // });
+
+                // $('.tab-link-tab1').trigger('click');
                 // console.log($('.tab').find('a[href="#' + 'tab1' + '"]'));
                 this.firstLoadCategory=false;
             };
             if(this.userTutorialStatus!=='false'){
 
                 if(this.selectedCategory==2){
-                    this.$dispatch('startOpenOverlayEvents');
+                    store.dispatch('startOpenOverlayEvents');
                 } else if(this.selectedCategory==6){
-                    this.$dispatch('startOpenOverlayStaff');
+                    store.dispatch('startOpenOverlayStaff');
                 } else{
-                    this.$dispatch('startOpenOverlayCategories');
+                    store.dispatch('startOpenOverlayCategories');
                 }
             }
         },

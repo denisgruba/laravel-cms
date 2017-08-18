@@ -1,7 +1,8 @@
+<template>
+    <div></div>
+</template>
 <script>
     export default {
-        template: '#tutorial-component',
-        name: 'tutorial-component',
         data(){
             return{
                 // categories: [],
@@ -15,12 +16,11 @@
             'openTutorial'
         ],
         created(){
-            console.log(this.tutorialPage);
-            if(this.tutorialPage == 'CreateNews') this.$emit('startOpenOverlayCreateNews');
-            if(this.tutorialPage == 'CreateEvent') this.$emit('startOpenOverlayCreateEvent');
-            if(this.tutorialPage == 'CreateDocument') this.$emit('startOpenOverlayCreateDocument');
-            if(this.tutorialPage == 'CreateStaff') this.$emit('startOpenOverlayCreateStaff');
-            if(this.tutorialPage == 'SortStaff') {this.$emit('startOpenOverlaySortStaff')} else { $('#tutorial-staff-sort-drag').remove() } ;
+            if(this.tutorialPage == 'CreateNews') store.dispatch('startOpenOverlayCreateNews');
+            if(this.tutorialPage == 'CreateEvent') store.dispatch('startOpenOverlayCreateEvent');
+            if(this.tutorialPage == 'CreateDocument') store.dispatch('startOpenOverlayCreateDocument');
+            if(this.tutorialPage == 'CreateStaff') store.dispatch('startOpenOverlayCreateStaff');
+            if(this.tutorialPage == 'SortStaff') {store.dispatch('startOpenOverlaySortStaff')} else { $('#tutorial-staff-sort-drag').remove() } ;
             // this.openTutorial = $vm.root.openTutorial;
         },
         methods:{

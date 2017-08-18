@@ -314,6 +314,13 @@
                         </div>
                     </div>
                 {{ Form::close() }}
+                @if ($category->id==2)
+                    <tutorial :tutorial-page="'CreateEvent'"></tutorial>
+                @elseif ($category->id==5)
+                    <tutorial :tutorial-page="'CreateDocument'"></tutorial>
+                @else
+                    <tutorial :tutorial-page="'CreateNews'"></tutorial>
+                @endif
             @else
                 <div class="row">
                     <div class="col m10 offset-m1 white">
@@ -324,19 +331,12 @@
             @endif
         </div>
     </main>
-    @if ($category->id==2)
-        <tutorial-component :tutorial-page="'CreateEvent'"></tutorial-component>
-    @elseif ($category->id==5)
-        <tutorial-component :tutorial-page="'CreateDocument'"></tutorial-component>
-    @else
-        <tutorial-component :tutorial-page="'CreateNews'"></tutorial-component>
-    @endif
 
 @endsection
 
 @section('vue-template')
 
-<script type="text/x-template" id="tutorial-component"></script>
+
 
 @endsection
 

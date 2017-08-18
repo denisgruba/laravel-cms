@@ -18,6 +18,52 @@
                 <div id="staff-sort-drag" class="ui-contain" style="overflow: hidden; width: 100%; height: 100%;">
                     <ul id="sortable0">
                         {{-- @{{openTutorial}} --}}
+                        @if($enableSortTutorial)
+                        <li id="tutorial-staff-sort-drag">
+                            <ul class="collection with-header connectedSortable">
+                                <div id="tutorial-staff-sort-group">
+                                    <li class="collection-header">
+                                        <h4>
+                                            Example Group
+                                            <div class="switch right tooltipped" data-position="bottom" data-delay="50" data-tooltip="If you have a long list, you can fold the groups you don't edit to save up some space on the screen. This Does not affect the sorting in any way.">
+                                                <label>
+                                                    Fold
+                                                    <input type="checkbox" checked="checked"
+                                                    {{-- @if($index1 == 0)
+                                                        class="hide-toggle-extra"
+                                                    @else --}}
+                                                        class="hide-toggle"
+                                                    {{-- @endif --}}
+
+                                                    >
+                                                    <span class="lever"></span>
+                                                    Unfold
+                                                </label>
+                                            </div>
+                                        </h4>
+                                    </li>
+                                </div>
+                                <div id="tutorial-staff-sort-member">
+                                    <li class=" collection-item avatar collection-staff">
+                                        <img src="{{url('/')}}/img/nostaffimage.png" alt="" class="circle">
+
+                                        <span class="title"><strong>This is Example Staff Member</strong></span>
+                                        <p>
+                                        </p>
+
+                                        <p class="secondary-content">
+                                            <a href="" class="blue-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="Duplicate member"><i class="material-icons">content_copy</i></a>
+                                            <a href="" class="green-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit member"><i class="material-icons">mode_edit</i></a>
+                                            <a href="" class="red-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remove member"><i class="material-icons">delete</i></a>
+                                        </p>
+
+
+                                    </li>
+                                </div>
+
+                            </ul>
+                        </li>
+                        @endif
 
                         <tutorial :tutorial-page="'SortStaff'"></tutorial>
 
@@ -124,54 +170,6 @@
 
 @section('vue-template')
 
-    <script type="text/x-template" id="tutorial-component">
-        @if($enableSortTutorial)
-        <li id="tutorial-staff-sort-drag">
-            <ul class="collection with-header connectedSortable">
-                <div id="tutorial-staff-sort-group">
-                    <li class="collection-header">
-                        <h4>
-                            Example Group
-                            <div class="switch right tooltipped" data-position="bottom" data-delay="50" data-tooltip="If you have a long list, you can fold the groups you don't edit to save up some space on the screen. This Does not affect the sorting in any way.">
-                                <label>
-                                    Fold
-                                    <input type="checkbox" checked="checked"
-                                    {{-- @if($index1 == 0)
-                                        class="hide-toggle-extra"
-                                    @else --}}
-                                        class="hide-toggle"
-                                    {{-- @endif --}}
-
-                                    >
-                                    <span class="lever"></span>
-                                    Unfold
-                                </label>
-                            </div>
-                        </h4>
-                    </li>
-                </div>
-                <div id="tutorial-staff-sort-member">
-                    <li class=" collection-item avatar collection-staff">
-                        <img src="{{url('/')}}/img/nostaffimage.png" alt="" class="circle">
-
-                        <span class="title"><strong>This is Example Staff Member</strong></span>
-                        <p>
-                        </p>
-
-                        <p class="secondary-content">
-                            <a href="" class="blue-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="Duplicate member"><i class="material-icons">content_copy</i></a>
-                            <a href="" class="green-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="Edit member"><i class="material-icons">mode_edit</i></a>
-                            <a href="" class="red-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remove member"><i class="material-icons">delete</i></a>
-                        </p>
-
-
-                    </li>
-                </div>
-
-            </ul>
-        </li>
-        @endif
-    </script>
 
 @endsection
 

@@ -12,11 +12,12 @@
 >
 <div id="app">
     @include('partials.nav')
+    @include('partials.tutorial')
 
     @yield('content')
     @include('help.index')
 
-    @include('partials.tutorial')
+
 
     @include('partials.jswarning')
 </div>
