@@ -16,7 +16,7 @@
                     </div>
                 @endif
                 <form class="card white" method="POST" action="{{ route('register') }}">
-                    {{csrf_token()}}
+                    {!! Form::token() !!}
                     <div class="row" style="margin-left: 2rem; margin-right: 2rem;">
                         <p><br></p>
                         <h4>Register</h4>
