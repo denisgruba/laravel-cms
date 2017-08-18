@@ -48058,10 +48058,6 @@ Vue.use(__WEBPACK_IMPORTED_MODULE_0_moment___default.a);
  */
 Vue.component('example', __webpack_require__("./resources/assets/js/components/Example.vue"));
 
-Vue.filter('fromNow', function (value) {
-    return __WEBPACK_IMPORTED_MODULE_0_moment___default()(value).fromNow();
-});
-
 // Vue.material.registerTheme('default', {
 //     primary: {
 //         color: 'grey',
@@ -49020,6 +49016,9 @@ var vm = new Vue({
 
 });
 window.vm = vm;
+Vue.filter('fromNow', function (value) {
+    return __WEBPACK_IMPORTED_MODULE_0_moment___default()(value, 'YYYY-M-D H:m:ss').fromNow();
+});
 
 /***/ }),
 

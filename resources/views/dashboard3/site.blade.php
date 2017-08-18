@@ -25,7 +25,6 @@
                                     @{{category.name}}
                                 </a>
                             </li>
-
                         </ul>
                     </div>
                 </nav>

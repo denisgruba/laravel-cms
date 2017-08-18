@@ -41,9 +41,9 @@ import Tutorial from './components/Tutorial.vue';
  */
 Vue.component('example', require('./components/Example.vue'));
 
-Vue.filter('fromNow', function (value) {
-    return moment(value).fromNow();
-});
+
+
+
 
 // Vue.material.registerTheme('default', {
 //     primary: {
@@ -171,7 +171,7 @@ const vm = new Vue({
         tutorialID () {
             return store.state.tutorialID;
         },
-            queuedFunction () {
+        queuedFunction () {
             return store.state.queuedFunction;
         }
     },
@@ -727,3 +727,6 @@ const vm = new Vue({
 
 });
 window.vm = vm;
+Vue.filter('fromNow', function (value) {
+    return moment(value, 'YYYY-M-D H:m:ss').fromNow();
+});
