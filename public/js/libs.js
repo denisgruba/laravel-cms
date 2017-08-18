@@ -1545,7 +1545,7 @@ if (jQuery) {
           index = 0;
         }
         // Change url to current tab
-        window.location.hash = $active.attr('href');
+        // window.location.hash = $active.attr('href');
 
         // Swap content
         if (options.swipeable) {

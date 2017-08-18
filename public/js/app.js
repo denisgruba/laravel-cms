@@ -1705,35 +1705,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.categories = categories.body;
                 this.fetchingData = false;
                 if (window.location.hash.substr(4) !== '') {
-
+                    // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').delay(1000).trigger('click');
+                    // console.log('a[href="#' + window.location.hash.substr(1) + '"]');
+                    // $('ul.tabs').tabs();
+                    // $('ul.tabs').delay(2000).tabs('select_tab', "'"+window.location.hash.substr(1)+"'");
                     this.selectedCategory = window.location.hash.substr(4);
                 } else {
-                    this.selectedCategory = 1;
+                    this.selectedCategory = 0;
                 };
-                if (this.firstLoadCategory) {
-                    // $('ul.tabs').tabs({'swipeable': false});
-                    if (window.location.hash.substr(4) !== '') {
-                        $(document).ready(function () {
-                            $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
-                            $('ul.tabs').find('a[href="#' + window.location.hash.substr(4) + '"]').trigger('click');
-                            $('ul.tabs').find('active').removeClass('active');
-                            $('ul.tabs').find('a[href="#' + window.location.hash.substr(4) + '"]').addClass('active');
-                        });
-                        // this.changeGroup(window.location.hash.substr(4));
-                        // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
-                        // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
-                    } else {
-                        $(document).ready(function () {
-                            $('ul.tabs').tabs('select_tab', 'tab1');
-                            console.log($('.tab').find('a[href="#tab1"]'));
-                            $('ul.tabs').find('a[href="#tab1"]').trigger('click');
-                            $('ul.tabs').find('active').removeClass('active');
-                            $('ul.tabs').find('a[href="#tab1"]').addClass('active');
-                        });
-                        // $('.tab').find('a[href="#tab1"]').trigger('click');
-                        // $('ul.tabs').tabs('select_tab', 'tab1');
-                    };
-                };
+                // $('ul.tabs').tabs();
             }, function () {
                 this.fetchingFailed = true;
             });
@@ -1776,43 +1756,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         selectedCategory: function selectedCategory() {
             if (this.firstLoadCategory) {
-                // $('ul.tabs').tabs({'swipeable': false});
-                if (window.location.hash.substr(4) !== '') {
-                    $(document).ready(function () {
-                        $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
-                        $('ul.tabs').find('a[href="#' + window.location.hash.substr(4) + '"]').trigger('click');
-                        $('ul.tabs').find('active').removeClass('active');
-                        $('ul.tabs').find('a[href="#' + window.location.hash.substr(4) + '"]').addClass('active');
+                $(document).ready(function () {
+                    $('ul.tabs').tabs({
+                        'select_tab': 'tab0',
+                        onShow: function onShow() {
+                            console.log(this);
+                        }
                     });
-                    // this.changeGroup(window.location.hash.substr(4));
-                    // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
-                    // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
-                } else {
-                    $(document).ready(function () {
-                        $('ul.tabs').tabs('select_tab', 'tab1');
-                        console.log($('.tab').find('a[href="#tab1"]'));
-                        $('ul.tabs').find('a[href="#tab1"]').trigger('click');
-                        $('ul.tabs').find('active').removeClass('active');
-                        $('ul.tabs').find('a[href="#tab1"]').addClass('active');
-                    });
-                    // $('.tab').find('a[href="#tab1"]').trigger('click');
-                    // $('ul.tabs').tabs('select_tab', 'tab1');
-                };
-                // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
-                // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
-                // this.changeGroup(window.location.hash.substr(4));
-                // $('ul.tabs').children().removeAttr('style');
-                // $(document).ready(function(){
-                //     $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
-                //     $('.tab').find('a[href="#'+window.location.hash.substr(4)+'"]').trigger('click');
-                //     $('.tab').find('active').removeClass('active');
-                //     $('.tab').find('a[href="#'+window.location.hash.substr(4)+'"]').addClass('active');
+                });
+                // // $('ul.tabs').tabs({'swipeable': false});
+                // if(window.location.hash.substr(4)!==''){
+                //     $(document).ready(function(){
+                //         $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
+                //         $('.tabs').find('a[href="#'+window.location.hash.substr(4)+'"]').trigger('click');
+                //         $('.tabs').find('active').removeClass('active');
+                //         $('.tabs').find('a[href="#'+window.location.hash.substr(4)+'"]').addClass('active');
                 //
-                // });
-
-                // $('.tab-link-tab1').trigger('click');
-                // console.log($('.tab').find('a[href="#' + 'tab1' + '"]'));
-                this.firstLoadCategory = false;
+                //     });
+                //     // this.changeGroup(window.location.hash.substr(4));
+                //     // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
+                //     // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
+                // } else {
+                //     $(document).ready(function(){
+                //         $('ul.tabs').tabs('select_tab', 'tab1');
+                //         console.log($('.tab').find('a[href="#tab1"]'));
+                //         $('ul.tabs').find('a[href="#tab1"]').trigger('click');
+                //         $('ul.tabs').find('active').removeClass('active');
+                //         $('ul.tabs').find('a[href="#tab1"]').addClass('active');
+                //     });
+                //     // $('.tab').find('a[href="#tab1"]').trigger('click');
+                //     // $('ul.tabs').tabs('select_tab', 'tab1');
+                // };
+                // // $('.tab').find('a[href="#' + window.location.hash.substr(1) + '"]').trigger('click');
+                // // $('ul.tabs').tabs('select_tab', window.location.hash.substr(1));
+                // // this.changeGroup(window.location.hash.substr(4));
+                // // $('ul.tabs').children().removeAttr('style');
+                // // $(document).ready(function(){
+                // //     $('ul.tabs').tabs('select_tab', window.location.hash.substr(4));
+                // //     $('.tab').find('a[href="#'+window.location.hash.substr(4)+'"]').trigger('click');
+                // //     $('.tab').find('active').removeClass('active');
+                // //     $('.tab').find('a[href="#'+window.location.hash.substr(4)+'"]').addClass('active');
+                // //
+                // // });
+                //
+                // // $('.tab-link-tab1').trigger('click');
+                // // console.log($('.tab').find('a[href="#' + 'tab1' + '"]'));
+                // this.firstLoadCategory=false;
             };
             if (this.userTutorialStatus !== 'false') {
 

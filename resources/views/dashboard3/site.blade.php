@@ -16,6 +16,7 @@
                     @include('partials.breadcrumbs.dashboard-site')
                     <div class="nav-content">
                         <ul id="tutorial-categories" class="tabs tabs-transparent" style="display: flex;">
+                            <li class="tab"><a href="#tab0" class="tab-link-tab0" @click="changeGroup(0)">Stats</a></li>
                             <li
                                 v-for="category in categories"
                                 class="tab"
@@ -24,7 +25,7 @@
                                     @{{category.name}}
                                 </a>
                             </li>
-                            <li class="tab"><a href="#tab0" class="tab-link-tab0" @click="changeGroup(0)">Stats</a></li>
+
                         </ul>
                     </div>
                 </nav>
