@@ -28,17 +28,17 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies($gate);
 
             //    comment out below foreach before running composer install/update or a migration
-        // foreach ($this->getPermissions() as $permission) {
-        //     $gate->define($permission->name, function ($user) use ($permission) {
-        //
-        //         return $user->hasRole($permission->roles);
-        //
-        //     });
-        // }
+        foreach ($this->getPermissions() as $permission) {
+            $gate->define($permission->name, function ($user) use ($permission) {
+
+                return $user->hasRole($permission->roles);
+
+            });
+        }
     }
     //    comment out below function before running composer install/update or a migration
-    // protected function getPermissions()
-    // {
-    //     return Permission::with('roles')->get();
-    // }
+    protected function getPermissions()
+    {
+        return Permission::with('roles')->get();
+    }
 }

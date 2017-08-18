@@ -21,9 +21,12 @@ use Carbon\Carbon;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Notifications\Notifiable;
 
 class UserController extends Controller
 {
+	use Notifiable;
+
 	public function __construct()
 	{
 		$this->middleware('auth');
