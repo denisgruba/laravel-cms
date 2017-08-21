@@ -19,12 +19,13 @@
 							</tr>
 							</thead>
 							@foreach($groups as $group)
-								<tr>
-									@can('webteam')
-										<td>{{$group->id}}</td>
-									@endcan
+								{{ Form::open(array('url' => 'staff/group/rename/'.$group->id.'/'.$site->id, 'class' => '')) }}
+									<tr>
 
-									{{ Form::open(array('url' => 'staff/group/rename/'.$group->id.'/'.$site->id, 'class' => '')) }}
+										@can('webteam')
+											<td>{{$group->id}}</td>
+										@endcan
+
 										<td>
 											<div class="input-field inline" style="width:100%">
 												<input id="group" name="group" type="text" class="validate" required value="{{$group->name}}">
@@ -36,11 +37,13 @@
 												<i class="material-icons right">mode_edit</i>
 											</button>
 										</td>
-									{{ Form::close() }}
-									<td>
-										<a href="{{ url('staff/group/delete/') }}/{{$group->id}}/{{$site->id}}" class="waves-effect btn red right"><i class="material-icons">delete</i></a>
-									</td>
-								</tr>
+
+										<td>
+											<a href="{{ url('staff/group/delete/') }}/{{$group->id}}/{{$site->id}}" class="waves-effect btn red right"><i class="material-icons">delete</i></a>
+										</td>
+
+									</tr>
+								{{ Form::close() }}
 							@endforeach
 						</table>
 					</div>
