@@ -136,9 +136,7 @@ class VacancyResourceController extends Controller
 			if($request::get('post_pinned') == 'on'){
 				$post->pinned = 1;
 			}
-			if($request::get('post_pinned_trust') == 'on'){
-				$post->pinned_trust = 1;
-			}
+		    $post->pinned_trust = $request::get('location');
 			$post->default_resource_id = $request::get('default');
 			$post->thumbnail_style = $request::get('thumbnail_style');
 			$post->save();
@@ -243,6 +241,7 @@ class VacancyResourceController extends Controller
 				$content->contents = $request::get('content');
 				$content->venue = $request::get('venue');
 				$post->type_id = $request::get('type');
+                $post->pinned_trust = $request::get('location');
 
                 $content->start = $this->parseDate(
                     $request::get('start_date'),

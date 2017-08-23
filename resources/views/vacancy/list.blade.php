@@ -13,8 +13,9 @@
                         @endcan
                         <th data-field="Title">Title</th>
                         <th data-field="Author">Author</th>
-                        <th data-field="Type">Role</th>
+                        <th data-field="Role">Role</th>
                         <th data-field="Site">Site</th>
+                        <th data-field="Type">Type</th>
                         <th data-field="From">From</th>
                         <th data-field="To">To</th>
                         <th data-field="Views">Views</th>
@@ -39,6 +40,12 @@
                                 {{-- <a href="{{url('/')}}/post/type_list/{{$post->site_id}}/{{$site->id}}"> --}}
                                     {{$post->site_name}}
                                 {{-- </a> --}}
+                            </td>
+                            <td>
+                                @if($post->pinned_trust == 0) Int+Ext
+                                @elseif($post->pinned_trust == 1) Internal
+                                @elseif ($post->pinned_trust == 2) External
+                                @endif
                             </td>
                             <td>
                                 {{$post->start}}

@@ -72,6 +72,18 @@
                                     <label for="type">Select Site: (Required)</label>
                                 </div>
                             </div>
+                            <div style="clear: both;"></div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select name="location" id="location" required>
+                                        <option value="" disabled selected>Pick a Location (Required)</option>
+                                        <option value="1">Internal</option>
+                                        <option value="2">External</option>
+                                        <option value="0">Both</option>
+                                    </select>
+                                    <label for="type">Type of vacancy: (Required)</label>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col s12">
                                     <h5>Optional settings:</h5>

@@ -84,6 +84,17 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="input-field col s12">
+                                    <select name="location" id="location" required>
+                                        <option value="" disabled>Pick a Location (Required)</option>
+                                        <option value="1" @if($post->pinned_trust == 1) selected @endif>Internal</option>
+                                        <option value="2" @if($post->pinned_trust == 2) selected @endif>External</option>
+                                        <option value="0" @if($post->pinned_trust == 0) selected @endif>Both</option>
+                                    </select>
+                                    <label for="type">Type of vacancy: (Required)</label>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col s12">
                                     <h5>Optional settings:</h5>
                                     <p>You can attach images and pdf documents to your vacancy. One of the attached images will be used as a thumbnail. If there is no image added a random image will be used as a thumbnail. Alternatively, you can select a custom thumbnail in the "Thumbnail Settings".</p>
